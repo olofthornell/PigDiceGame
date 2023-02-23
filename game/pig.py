@@ -3,8 +3,8 @@ import shell
 
 
 def main():
-    Game.roll_dice(Game)
-    Game.roll_dice(Game)
+    Game.turn_roll_score(Game)
+    Game.turn_roll_score(Game)
     print(Game.turn_score)
 
     print('            88            ')
@@ -18,7 +18,7 @@ def main():
     print('88               "Y8bbdP"')
     print('')
 
-    #shell.Shell().cmdloop()
+    shell.Shell().cmdloop()
 
 
 if __name__ == "__main__":
