@@ -15,7 +15,11 @@ class Shell(cmd.Cmd):
 
     def do_cheat(self, _):
         print("Well look at that - you hit a six...")
+        
+    def do_turn_roll_score(self, _):
+        print(f"You rolled a {self.game.rolled_dice()}.")
+        print(f"You're score of the turn is {self.game.turn_roll_score()}")
 
-        def do_exit(self, _):
-            print("Well played! Bye")
-            return True
+    def do_exit(self, _):
+        print("Well played! Bye")
+        return True

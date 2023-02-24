@@ -18,6 +18,10 @@ def main():
     print('88               "Y8bbdP"')
     print('')
 
+    player = input("What is your name? ")
+    print()
+    print(f"Welcome {player}! Let's pass some pigs")
+
     shell.Shell().cmdloop()
 
 

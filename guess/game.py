@@ -15,7 +15,7 @@ class Game:
 
     def __init__(self):
         """Init the object."""
-        random.seed()
+        # random.seed()
 
     def start(self):
         """Start the game and randomize a new number."""
