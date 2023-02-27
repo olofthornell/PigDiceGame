@@ -14,11 +14,11 @@ class Game:
     def start(self):
         """Start the game"""
         pass
-    
+
     def stop(self):
         # player2
         pass
-    
+
     def roll(self):
         self.roll_score = Dice.roll(self)
 
@@ -28,12 +28,10 @@ class Game:
             self.stop()
         else:
             self.turn_score += self.roll_score
-        
+
     def total(self):
         self.total_score += self.turn_score
 
     def cheat(self):
         max_point = 6
         self.turn += max_point
-        
-    
