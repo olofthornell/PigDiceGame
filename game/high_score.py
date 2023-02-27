@@ -5,20 +5,20 @@ import pickle
 class highscore():
 
     def __init__(self):
-        highscorefile = open('highscorefile.bin', 'rb')
-        highscore_dict = pickle.load(highscorefile)
-        highscorefile.close()
+        high_score_file = open('high_score_file.bin', 'rb')
+        high_score_dict = pickle.load(high_score_file)
+        high_score_file.close()
 
 
-    def get_highscore(highscorefile):
-        for i in highscorefile:
-            print(highscorefile[i])
+    def get_high_score(high_score_file):
+        for i in high_score_file:
+            print(high_score_file[i])
 
 
 
-    def save(self, highscore_dict):
-        highscore_dict[name] = score
-        highscorefile = open('highscorefile.bin', 'wb')
-        pickle.dump(highscore_dict, highscorefile.bin)
-        highscorefile.close()
+    def save(self, high_score_dict):
+        high_score_dict[name] = score
+        high_score_file = open('high_score_file.bin', 'wb')
+        pickle.dump(high_score_dict, high_score_file)
+        high_score_file.close()
 
