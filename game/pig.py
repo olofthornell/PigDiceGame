@@ -3,9 +3,6 @@ import shell
 
 
 def main():
-    Game.turn_roll_score(Game)
-    Game.turn_roll_score(Game)
-    print(Game.turn_score)
 
     print('            88            ')
     print()

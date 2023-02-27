@@ -1,8 +1,10 @@
-import dice
+from dice import Dice
 
 
 class Game:
 
+    # maybe player class should have this variables
+    roll_score = 0
     turn_score = 0
     total_score = 0
 
@@ -13,21 +15,25 @@ class Game:
         """Start the game"""
         pass
     
-    def rolled_dice(self):
-        dice1 = dice.Dice()
-        dice_roll = dice1.roll()
-        return dice_roll
-
-    def turn_roll_score(self):
-        if self.rolled_dice() == 1:
-            self.turn_score = 0
-            return self.turn_score
-        else:
-            self.turn_score += self.rolled_dice(self)
-            return self.turn_score
+    def stop(self):
+        # player2
+        pass
     
+    def roll(self):
+        self.roll_score = Dice.roll(self)
+
+    def turn(self):
+        if self.roll_score == 1:
+            self.turn_score = 0
+            self.stop()
+        else:
+            self.turn_score += self.roll_score
+        
+    def total(self):
+        self.total_score += self.turn_score
+
     def cheat(self):
         max_point = 6
-        self.turn_score += max_point
+        self.turn += max_point
         
     
