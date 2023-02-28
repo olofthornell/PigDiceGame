@@ -9,14 +9,14 @@ class Game:
     total_score = 0
 
     def __init__(self):
-        pass
+        self.dice1 = Dice
 
     def hold(self):
         # player2
         pass
 
     def roll(self):
-        self.roll_score = Dice.roll(self)
+        self.roll_score = self.dice1.roll(self)
 
     def turn(self):
         if self.roll_score == 1:
@@ -28,7 +28,6 @@ class Game:
         self.total_score += self.turn_score
 
     def cheat(self):
-        max_point = 6
-        self.turn_score += max_point
+        self.turn_score += self.dice1.
         
     
