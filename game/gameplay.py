@@ -34,6 +34,6 @@ class Game:
 
     def cheat(self):
         max_point = 6
-        self.turn += max_point
+        self.turn_score += max_point
         
     

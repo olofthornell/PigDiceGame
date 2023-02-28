@@ -14,13 +14,13 @@ You have 5 guesses. Then you loose.
 
 """
 
-import shell
+import shell1
 
 
 def main():
     """Execute the main program."""
     print(__doc__)
-    shell.Shell().cmdloop()
+    shell1.Shell().cmdloop()
 
 
 if __name__ == "__main__":
