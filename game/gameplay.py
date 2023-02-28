@@ -11,11 +11,7 @@ class Game:
     def __init__(self):
         pass
 
-    def start(self):
-        """Start the game"""
-        pass
-
-    def stop(self):
+    def hold(self):
         # player2
         pass
 
@@ -25,7 +21,6 @@ class Game:
     def turn(self):
         if self.roll_score == 1:
             self.turn_score = 0
-            self.stop()
         else:
             self.turn_score += self.roll_score
 
@@ -34,4 +29,6 @@ class Game:
 
     def cheat(self):
         max_point = 6
-        self.turn += max_point
+        self.turn_score += max_point
+        
+    

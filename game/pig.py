@@ -1,5 +1,4 @@
-from gameplay import Game
-import shell
+import shell2
 
 
 def main():
@@ -19,7 +18,7 @@ def main():
     print()
     print(f"Welcome {player}! Let's pass some pigs")
 
-    shell.Shell().cmdloop()
+    shell2.Shell2().cmdloop()
 
 
 if __name__ == "__main__":
