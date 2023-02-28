@@ -21,6 +21,11 @@ class Shell(cmd.Cmd):
         self.game1.turn()
         print(f"You rolled a {self.game1.roll_score}.")
         print(f"You're score of the turn is {self.game1.turn_score}")
+        
+    def do_hold(self, _):
+        self.game1.total()
+        print(f"Total score: {self.game1.total_score}")
+        # cPIGu
 
     def do_exit(self, _):
         print("Well played! Bye")
