@@ -2,7 +2,7 @@ from player import Player
 import pickle
 
 
-class Highscore():
+class High_score():
 
     def __init__(self):
         high_score_file = open('high_score_file.bin', 'rb')
