@@ -1,4 +1,5 @@
 import shell2
+from player import Player
 
 
 def main():
@@ -14,9 +15,7 @@ def main():
     print('88               "Y8bbdP"')
     print('')
 
-    player = input("What is your name? ")
-    print()
-    print(f"Welcome {player}! Let's pass some pigs")
+
 
     shell2.Shell2().cmdloop()
 

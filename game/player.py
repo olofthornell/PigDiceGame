@@ -1,6 +1,7 @@
 class Player():
 
     def __init__(self, name):
+        """Initiating """
         self.name = name
         self.wins = 0
         self.roll_score = 0

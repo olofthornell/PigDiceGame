@@ -1,17 +1,15 @@
 from dice import Dice
-from player import Player
+from shell1 import Shell
 
 
 class Game:
 
-    # maybe player class should have this variables
-    roll_score = 0
-    turn_score = 0
-    total_score = 0
-
     def __init__(self):
-        self.players = [self.Player(), self.Player()]
         self.dice1 = Dice()
+        self.player = Shell.current_player(self)
+        self.roll_score = self.player.get_roll_score(self)
+        self.turn_score = self.player.get_turn_score(self)
+        self.total_score = self.player.get_total_score(self)
 
     def hold(self):
         self.total()
@@ -22,7 +20,7 @@ class Game:
         self.roll_score = self.dice1.roll()
 
     def turn(self):
-        if self.roll_score == 1:
+        if self.roll_score == Dice.dice_min(self):
             self.turn_score = 0
         else:
             self.turn_score += self.roll_score
