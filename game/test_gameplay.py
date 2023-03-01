@@ -10,8 +10,8 @@ class test_game(unittest.TestCase):
         self.dice = Dice()
 
     def test_turn(self):
-        self.game.roll_score = 1
-        self.game.turn_score = 6
+        self.game.roll_score = self.dice.dice_min()
+        self.game.turn_score = self.dice.dice_max()
         self.game.turn()
         self.assertEqual(self.game.turn_score, 0)
 
@@ -22,17 +22,14 @@ class test_game(unittest.TestCase):
         self.assertEqual(self.game.total_score, 11)
         
     def test_cheat(self):
-        self.game.turn_score = 0
         self.game.cheat()
-        self.assertEqual(self.game.turn_score, 6)
+        self.assertEqual(self.game.turn_score, self.dice.dice_max())
         
     def test_roll(self):
-        self.dice.roll()
-        resault = self.game.roll_score 
-        expected = 1 
-        
-        
-
+        self.game.roll()
+        resault = self.game.roll_score
+        expected = self.dice.dice_min() <= resault <= self.dice.dice_max()
+        self.assertTrue(expected)
 
 
 if __name__ == "__main__":
