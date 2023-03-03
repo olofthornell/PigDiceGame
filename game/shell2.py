@@ -13,16 +13,18 @@ class Shell2(cmd.Cmd):
         print(f"Welcome {self._player_name}! Let's pass some pigs")
         print("-" * 43)
         print("Commands:")
-        print("'settings' for setting, print 'start_game' to start")
-        
+        print("* 'difficulty' + 'C' (coward), 'N' (normal) or 'B' (bold)")
+        print("* 'start_game' to start")
+
     def player_name(self):
         return self._player_name
 
-    def do_settings(self, _):
-        print("Change stuff")
+    def do_difficulty(self, arg):
+        """Choose personality on opponent cPIGu"""
+        return arg
 
     def do_start_game(self, _):
-        shell1.Shell().cmdloop()
+        shell1.Shell(self.player_name).cmdloop()
 
     def do_exit(self, _):
         print("Well played! Bye")

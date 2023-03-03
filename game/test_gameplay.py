@@ -1,12 +1,15 @@
 import unittest
 from gameplay import Game
 from dice import Dice
+from player import Player
 
 
 class test_game(unittest.TestCase):
 
     def setUp(self):
-        self.game = Game()
+        name = "test_name"
+        player = Player(name)
+        self.game = Game(player)
         self.dice = Dice()
 
     def test_turn(self):
