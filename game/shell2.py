@@ -24,7 +24,7 @@ class Shell2(cmd.Cmd):
         return arg
 
     def do_start_game(self, _):
-        shell1.Shell(self.player_name).cmdloop()
+        shell1.Shell(self._player_name).cmdloop()
 
     def do_exit(self, _):
         print("Well played! Bye")

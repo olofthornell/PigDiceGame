@@ -18,7 +18,6 @@ class Game:
         if player.get_roll_score() == 1:
             player.set_turn_score(0)
             self.total(player)
-            print(f"Total: {player.get_total_score()}")
         else:
             turn = player.get_turn_score()
             roll = player.get_roll_score()
