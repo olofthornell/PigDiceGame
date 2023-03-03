@@ -15,10 +15,10 @@ class Player():
         self.name = new_name
 
     def get_wins(self):
-        return self.score
+        return self.wins
 
-    def set_wins(self, new_score):
-        self.score = new_score
+    def set_wins(self, new_wins):
+        self.wins = new_wins
 
     def get_roll_score(self):
         return self.roll_score
