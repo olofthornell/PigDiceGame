@@ -15,8 +15,6 @@ def main():
     print('88               "Y8bbdP"')
     print('')
 
-
-
     shell2.Shell2().cmdloop()
 
 

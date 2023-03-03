@@ -11,7 +11,7 @@ class Shell(cmd.Cmd):
         self.human_player = Player(player_name)
         self.computer_player = Player("cPIGu")
         self._current_player = self.human_player
-        self.game1 = Game(self._current_player)
+        self.game1 = Game()
         print("Lets go")
         
     def current_player(self):
@@ -28,24 +28,29 @@ class Shell(cmd.Cmd):
             
     def do_cheat(self, _):
         """Roll the dice and get a six"""
-        self.game1.cheat()
+        self.game1.cheat(self._current_player)
+        self.game1.turn(self._current_player)
         print("Well look at that - you rolled a six...")
-        print(f"You're score of the turn is {self.game1.turn_score}")
+        print(f"Turn score: {self._current_player.get_turn_score()}")
         
     def do_roll(self, _):
         print(f"{self.current_player().get_name()}")
-        self.game1.roll()
-        self.game1.turn()
-        print(f"You rolled a {self.game1.roll_score}.")
-        print(f"You're score of the turn is {self.game1.turn_score}")
-        if self.game1.roll_score == 1:
+        self.game1.roll(self._current_player)
+        self.game1.turn(self._current_player)
+        print(f"You rolled a {self._current_player.get_roll_score()}")
+        print(f"Turn score: {self._current_player.get_turn_score()}")
+        if self._current_player.get_roll_score() == 1:
             self.switch_player()
         
     def do_hold(self, _):
-        self.game1.hold()
-        print(f"Total score: {self.game1.total_score}")
+        self.game1.hold(self._current_player)
+        print(f"Total score: {self._current_player.get_total_score()}")
         self.switch_player()
         # cPIGu
+        
+    def do_total(self, _):
+        print(f"{self._current_player.get_name()}")
+        print(f"{self._current_player.get_total_score()}")
 
     def do_exit(self, _):
         print("Well played! Bye")
