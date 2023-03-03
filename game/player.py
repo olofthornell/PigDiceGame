@@ -20,6 +20,9 @@ class Player():
     def set_wins(self, new_wins):
         self.wins = new_wins
 
+    def add_win(self):
+        self.wins += 1
+
     def get_roll_score(self):
         return self.roll_score
 

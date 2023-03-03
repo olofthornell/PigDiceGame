@@ -15,7 +15,7 @@ class High_score():
 
     def save(self):
         name = Player.get_name()
-        score = Player.get_score()
+        score = Player.get_wins()
         self.high_score_dict[name] = score
         high_score_file = open('high_score_file.bin', 'wb')
         pickle.dump(self.high_score_dict, high_score_file)
