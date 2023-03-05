@@ -7,6 +7,7 @@ class Player():
         self.roll_score = 0
         self.turn_score = 0
         self.total_score = 0
+        self.games_played = 0
 
     def get_name(self):
         return self.name
@@ -40,3 +41,12 @@ class Player():
 
     def set_total_score(self, new_total_score):
         self.total_score = new_total_score
+
+    def get_games_played(self):
+        return self.games_played
+
+    def set_games_played(self, new_games_played):
+        self.games_played = new_games_played
+
+    def add_games_played(self):
+        self.games_played += 1
