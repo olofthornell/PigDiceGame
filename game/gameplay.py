@@ -29,4 +29,4 @@ class Game:
         player.set_total_score(new_total_score)
 
     def cheat(self, player):
-        player.set_roll_score(6) #self.dice1.dice_max
+        player.set_roll_score(self.dice1.dice_max())    #self.dice1.dice_max

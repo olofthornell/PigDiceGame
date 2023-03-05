@@ -1,9 +1,9 @@
 import shell2
-from player import Player
 
 
 def main():
 
+    print()
     print('            88            ')
     print()
     print('8b,dPPYba,  88  ,adPPYb,d8')                       
