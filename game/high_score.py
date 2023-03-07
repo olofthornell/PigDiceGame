@@ -16,16 +16,34 @@ class High_score():
                 pass
 
     def get_high_score(self):
-        for i in self.high_score_dict:
-            print(self.high_score_dict[i])
+        print_name = "Name"
+        print_games_played = "Games_played"
+        print_wins = "Wins"
+        print(f"{print_name:<20}", end="")
+        print(f"{print_games_played:<20}", end="")
+        print(f"{print_wins:<20}")
+        for name in self.high_score_dict:
+            print(f"{name:<20}", end="")
+            print(f"{self.high_score_dict[name][0]:<20}", end="")
+            print(self.high_score_dict[name][1])
 
     def save_current(self, player):
-        games_wins_list = [player.get_games_played, player.get_wins]
-        self.high_score_dict[player.get_name] = games_wins_list
-
-    def save(self, player):
         name = player.get_name()
-        score = player.get_wins()
-        self.high_score_dict[name] = score
+        games_played = player.get_games_played()
+        wins = player.get_wins()
+        games_wins_list = [games_played, wins]
+        self.high_score_dict[name] = games_wins_list
+
+    def save(self):
         with open('game/high_score_file.bin', 'wb') as high_score_file:
             pickle.dump(self.high_score_dict, high_score_file)
+
+    def clear_dict(self):
+        print("Are you sure you want to clear the high score list?" +
+              "\n" + "This can not be undone!")
+        option = input("(Y/N):")
+        if option.upper() == "Y":
+            self.high_score_dict.clear()
+            print("The high score list was deleted.")
+        else:
+            print("The high score list was not deleted.")
