@@ -1,7 +1,9 @@
+""""""
 import random
 
 
 class Dice:
+    """A class that holds information about a dice"""
 
     def __init__(self):
         self._dice_min = 1
