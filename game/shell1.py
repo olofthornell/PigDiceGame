@@ -8,13 +8,13 @@ from intelligence import Intelligence
 
 class Shell(cmd.Cmd):
 
-    def __init__(self, player_name):
+    def __init__(self, player):
         """Init game and player objects."""
         super().__init__()
         self.intell = Intelligence()
         self._end_turn = False
         self._difficulty = self.intell.moderate()
-        self.human_player = Player(player_name)
+        self.human_player = player
         self.computer_player = Player("cPIGu")
         self._current_player = self.human_player
         self.game1 = Game()
@@ -93,6 +93,7 @@ class Shell(cmd.Cmd):
         if self._current_player == self.computer_player:
             self.game1.hold(self._current_player)
             self.switch_player()
+        
 
     def do_cheat(self, _):
         """Roll the dice and get a six"""
@@ -130,7 +131,11 @@ class Shell(cmd.Cmd):
             self.game1.total(self._current_player)
             print(f"{self._current_player.get_name()} is the winner!!!")
             self._current_player.add_win()
-            self._current_player.add_games_played()
+            self.human_player.add_games_played()
+            self.computer_player.set_turn_score(0)
+            self.computer_player.set_total_score(0)
+            self.human_player.set_turn_score(0)
+            self.human_player.set_total_score(0)
             self._end_turn = True
 
     def do_hold(self, _):

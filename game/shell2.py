@@ -3,7 +3,7 @@
 import cmd
 import shell1
 from high_score import High_score
-
+from player import Player
 
 
 class Shell2(cmd.Cmd):
@@ -11,11 +11,14 @@ class Shell2(cmd.Cmd):
     def __init__(self):
         """Init the object."""
         super().__init__()
-        self.h_score = High_score()
         self.print_welcome_graphic()
         self._player_name = input("Enter your name? ")
+        self.player = Player(self._player_name)
+        self.h_score = High_score()
+        if self._player_name in self.h_score.high_score_dict:
+            self.h_score.move_player_info(self.player, self._player_name)
         self.print_menu()
-    
+
     def print_welcome_graphic(self):
         print()
         print('            88            ')
@@ -50,7 +53,7 @@ class Shell2(cmd.Cmd):
 
     def do_start(self, _):
         """Start the game"""
-        shell1.Shell(self._player_name).cmdloop()
+        shell1.Shell(self.player).cmdloop()
 
     def do_rules(self, _):
         "Rules for pig game"
@@ -64,16 +67,19 @@ class Shell2(cmd.Cmd):
         print("4. If you roll a 1 you loose all gained score for the turn.")
         print("5. Ending a turn will save your points to a total.")
         print()
-        
+
     def do_high_score(self, _):
         """Show high score"""
+        self.h_score.save_current(self.player)
         self.h_score.get_high_score()
 
     def do_exit(self, _):
         """Exit the program"""
         print("Exit the program")
         print("See you next time")
+        self.h_score.save_current(self.player)
+        self.h_score.save()
         return True
-    
+
     def default(self, line):
         print("Wrong command. Type 'help' for a list of commands.")

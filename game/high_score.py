@@ -9,8 +9,16 @@ class High_score():
             with open('game/high_score_file.bin', 'rb') as high_score_file:
                 self.high_score_dict = pickle.load(high_score_file)
         except (EOFError, FileNotFoundError):
-            with open('game/high_score_file.bin', 'wb') as high_score_file:
-                pass
+            try:
+                with open('game/high_score_file.bin', 'wb') as high_score_file:
+                    pass
+            except (FileNotFoundError):
+                with open('game/high_score_file.bin', 'wb') as high_score_file:
+                    pass
+
+    def move_player_info(self, player, player_name):
+        player.set_games_played(self.high_score_dict[player_name][0])
+        player.set_wins(self.high_score_dict[player_name][1])
 
     def get_high_score(self):
         print_name = "Name"
