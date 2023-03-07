@@ -8,10 +8,7 @@ class High_score():
         try:
             with open('game/high_score_file.bin', 'rb') as high_score_file:
                 self.high_score_dict = pickle.load(high_score_file)
-        except EOFError:
-            with open('game/high_score_file.bin', 'wb') as high_score_file:
-                pass
-        except FileNotFoundError:
+        except (EOFError, FileNotFoundError):
             with open('game/high_score_file.bin', 'wb') as high_score_file:
                 pass
 
