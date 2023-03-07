@@ -54,7 +54,7 @@ class Shell(cmd.Cmd):
         if arg == "bold":
             print("cPIGu personality set to 'bold'")
             self._difficulty = self.intell.bold()
-    
+
     def current_player(self):
         """Returning the current player"""
         return self._current_player
@@ -130,6 +130,7 @@ class Shell(cmd.Cmd):
             self.game1.total(self._current_player)
             print(f"{self._current_player.get_name()} is the winner!!!")
             self._current_player.add_win()
+            self._current_player.add_games_played()
             self._end_turn = True
 
     def do_hold(self, _):

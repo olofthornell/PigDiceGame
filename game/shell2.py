@@ -2,6 +2,8 @@
 
 import cmd
 import shell1
+from high_score import High_score
+
 
 
 class Shell2(cmd.Cmd):
@@ -9,6 +11,7 @@ class Shell2(cmd.Cmd):
     def __init__(self):
         """Init the object."""
         super().__init__()
+        self.h_score = High_score()
         self.print_welcome_graphic()
         self._player_name = input("Enter your name? ")
         self.print_menu()
@@ -64,7 +67,7 @@ class Shell2(cmd.Cmd):
         
     def do_high_score(self, _):
         """Show high score"""
-        pass
+        self.h_score.get_high_score()
 
     def do_exit(self, _):
         """Exit the program"""
