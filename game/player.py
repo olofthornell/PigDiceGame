@@ -50,3 +50,8 @@ class Player():
 
     def add_games_played(self):
         self.games_played += 1
+        
+    def clear_player_stats(self, player):
+        player.set_wins(0)
+        player.set_games_played(0)
+        

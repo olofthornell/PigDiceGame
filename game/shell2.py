@@ -45,11 +45,22 @@ class Shell2(cmd.Cmd):
         print("-" * 79)
         print(f"{'high_score':20}| Show list of players wins")
         print("-" * 79)
+        print(f"{'clear_high_score':20}| Clear the high score")
+        print("-" * 79)
+        print(f"{'change_name':20}| Change your nickname")
+        print("-" * 79)
         print(f"{'exit':20}| Exit the program")
         print("-" * 79)
 
     def player_name(self):
         return self._player_name
+
+    def do_change_name(self, _):
+        """Change player name"""
+        old_name = self.player.get_name()
+        new_name = input("Enter new nickname: ")
+        self.player.set_name(new_name)
+        self.h_score.delete_name(old_name)
 
     def do_start(self, _):
         """Start the game"""
@@ -72,6 +83,11 @@ class Shell2(cmd.Cmd):
         """Show high score"""
         self.h_score.save_current(self.player)
         self.h_score.get_high_score()
+    
+    def do_clear_high_score(self, _):
+        """Clear the high score"""
+        self.h_score.clear_dict()
+        self.player.clear_player_stats(self.player)
 
     def do_exit(self, _):
         """Exit the program"""
