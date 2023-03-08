@@ -1,13 +1,36 @@
+"""Unit testing dice"""
 import unittest
 from dice import Dice
 
 
-class test_dice(unittest.TestCase):
+class TestDice(unittest.TestCase):
+    """Test the dice class"""
+
+    def setUp(self):
+        self.dice = Dice()
+    
+    def test_init_object(self):
+        """Instantiate an object and check its properties."""
+        res = Dice()
+        exp = Dice
+        self.assertIsInstance(res, exp)
 
     def test_roll(self):
-        resault = Dice.roll(self)
+        """Test range on dice value"""
+        resault = self.dice.roll()
         self.assertGreaterEqual(resault, 1)
         self.assertLessEqual(resault, 6)
+
+    def test_dice_min(self):
+        """Test"""
+        exp = self.dice._dice_min
+        res = self.dice.dice_min()
+        self.assertEqual(exp, res)
+
+    def test_dice_max(self):
+        exp = self.dice._dice_max
+        res = self.dice.dice_max()
+        self.assertEqual(exp, res)
 
 
 if __name__ == "__main__":

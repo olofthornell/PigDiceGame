@@ -1,36 +1,54 @@
+"Unit testing gameplay"
 import unittest
-from gameplay import Game
 from dice import Dice
 from player import Player
+from game import Game
 
 
-class test_game(unittest.TestCase):
+class TestGame(unittest.TestCase):
+    """Test gameplay class"""
 
     def setUp(self):
         name = "test_name"
-        player = Player(name)
-        self.game = Game(player)
+        self.player = Player(name)
+        self.game = Game()
         self.dice = Dice()
 
+    def test_init_object(self):
+        """Instantiate an object and check its properties."""    
+        res = Game()
+        exp = Game
+        self.assertIsInstance(res, exp)
+
     def test_turn(self):
-        self.game.roll_score = self.dice.dice_min()
-        self.game.turn_score = self.dice.dice_max()
-        self.game.turn()
-        self.assertEqual(self.game.turn_score, 0)
+        self.player.roll_score = self.dice.dice_min()
+        self.player.turn_score = self.dice.dice_max()
+        self.game.turn(self.player)
+        self.assertEqual(self.player.turn_score, 0)
+
+        self.player.turn_score = 10
+        self.player.roll_score = 1
+        self.game.turn(self.player)
+        self.assertEqual(0, self.player.turn_score)
+
+        self.player.roll_score = 3
+        self.player.turn_score = 3
+        self.game.turn(self.player)
+        self.assertEqual(self.player.turn_score, 6)
 
     def test_total(self):
-        self.game.turn_score = 6
-        self.game.total_score = 5
-        self.game.total()
-        self.assertEqual(self.game.total_score, 11)
-        
+        self.player.turn_score = 6
+        self.player.total_score = 5
+        self.game.total(self.player)
+        self.assertEqual(self.player.total_score, 11)
+
     def test_cheat(self):
-        self.game.cheat()
-        self.assertEqual(self.game.turn_score, self.dice.dice_max())
+        self.game.cheat(self.player)
+        self.assertEqual(self.player.roll_score, self.dice.dice_max())
         
     def test_roll(self):
-        self.game.roll()
-        resault = self.game.roll_score
+        self.game.roll(self.player)
+        resault = self.player.roll_score
         expected = self.dice.dice_min() <= resault <= self.dice.dice_max()
         self.assertTrue(expected)
 

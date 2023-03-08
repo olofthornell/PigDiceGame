@@ -1,4 +1,4 @@
-""""""
+"""The dice"""
 import random
 
 
@@ -14,9 +14,6 @@ class Dice:
 
     def dice_max(self):
         return self._dice_max
-
-    def __str__(self):
-        pass
 
     def roll(self):
         return random.randint(1, 6)

@@ -3,7 +3,7 @@
 
 class Intelligence:
     """Cpu personality"""
-    
+
     def __init__(self):
         self._coward = 4
         self._moderate = 15

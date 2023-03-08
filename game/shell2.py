@@ -64,7 +64,7 @@ class Shell2(cmd.Cmd):
 
     def do_start(self, _):
         """Start the game"""
-        shell1.Shell(self.player).cmdloop()
+        shell1.Shell1(self.player).cmdloop()
 
     def do_rules(self, _):
         "Rules for pig game"
