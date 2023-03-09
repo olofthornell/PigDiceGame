@@ -1,4 +1,4 @@
-"""Cmdloop that creates a outer shell and workes as a main menu"""
+"""Cmdloop that creates a outer shell and workes as a main menu."""
 
 import cmd
 import shell1
@@ -7,6 +7,7 @@ from player import Player
 
 
 class Shell2(cmd.Cmd):
+    """Command actions for dice game gameplay."""
 
     def __init__(self):
         """Init the object."""
@@ -20,10 +21,11 @@ class Shell2(cmd.Cmd):
         self.print_menu()
 
     def print_welcome_graphic(self):
-        print()
+        """Print art for pig game."""
+        print('\n' * 40)
         print('            88            ')
         print()
-        print('8b,dPPYba,  88  ,adPPYb,d8')                       
+        print('8b,dPPYba,  88  ,adPPYb,d8')
         print('88P"    "8a 88 a8"    "Y88')
         print('88       d8 88 8b       88')
         print('88b,   ,a8" 88 "8a,   ,d88 ')
@@ -33,6 +35,7 @@ class Shell2(cmd.Cmd):
         print('')
 
     def print_menu(self):
+        """Print main menu."""
         print()
         print()
         print(f"Welcome {self._player_name}! Let's pass some pigs")
@@ -51,12 +54,14 @@ class Shell2(cmd.Cmd):
         print("-" * 79)
         print(f"{'exit':20}| Exit the program")
         print("-" * 79)
+        print()
 
     def player_name(self):
+        """Return human player name."""
         return self._player_name
 
     def do_change_name(self, _):
-        """Change player name"""
+        """Change player name."""
         old_name = self.player.get_name()
         new_name = input("Enter new nickname: ").lower()
         if new_name.lower() in self.h_score.high_score_dict:
@@ -66,11 +71,11 @@ class Shell2(cmd.Cmd):
             self.h_score.delete_name(old_name)
 
     def do_start(self, _):
-        """Start the game"""
+        """Start the game."""
         shell1.Shell1(self.player).cmdloop()
 
     def do_rules(self, _):
-        "Rules for pig game"
+        """Rules for pig game."""
         print()
         print("-" * 79)
         print("Pig game rules:")
@@ -83,17 +88,17 @@ class Shell2(cmd.Cmd):
         print()
 
     def do_high_score(self, _):
-        """Show high score"""
+        """Show high score."""
         self.h_score.save_current(self.player)
         self.h_score.get_high_score()
-    
+
     def do_clear_high_score(self, _):
-        """Clear the high score"""
+        """Clear the high score."""
         self.h_score.clear_dict()
         self.player.clear_player_stats(self.player)
 
     def do_exit(self, _):
-        """Exit the program"""
+        """Exit the program."""
         print("Exit the program")
         print("See you next time")
         self.h_score.save_current(self.player)
@@ -101,4 +106,5 @@ class Shell2(cmd.Cmd):
         return True
 
     def default(self, line):
+        """Print error message when entering wrong command."""
         print("Wrong command. Type 'help' for a list of commands.")

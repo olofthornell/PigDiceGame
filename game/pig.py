@@ -1,5 +1,6 @@
 """A dice game namned Pig.
-First to reach 100 points wins"""
+First to reach 100 points wins
+"""
 
 import shell2
 
