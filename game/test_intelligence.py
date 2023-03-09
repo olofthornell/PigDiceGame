@@ -32,3 +32,7 @@ class TestIntelligence(unittest.TestCase):
         exp = self.intelligence._bold
         res = self.intelligence.bold()
         self.assertEqual(exp, res)
+
+
+if __name__ == "__main__":
+    unittest.main()

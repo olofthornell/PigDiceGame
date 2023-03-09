@@ -1,56 +1,34 @@
-"Unit testing gameplay"
 import unittest
-from dice import Dice
-from player import Player
+
 from game import Game
+from player import Player
+from gameplay import Gameplay
 
 
-class TestGame(unittest.TestCase):
+class TestGameplay(unittest.TestCase):
     """Test gameplay class"""
-
+    
     def setUp(self):
         name = "test_name"
-        self.player = Player(name)
+        self.human_player = Player(name)
+        self.computer_player = Player("cpu")
         self.game = Game()
-        self.dice = Dice()
+        self.current_player = self.human_player
+        self.gameplay = Gameplay(self.current_player)
 
     def test_init_object(self):
-        """Instantiate an object and check its properties."""    
-        res = Game()
-        exp = Game
+        """Instantiate an object and check its properties."""
+        res = Gameplay(self.current_player)
+        exp = Gameplay
         self.assertIsInstance(res, exp)
-
-    def test_turn(self):
-        self.player.roll_score = self.dice.dice_min()
-        self.player.turn_score = self.dice.dice_max()
-        self.game.turn(self.player)
-        self.assertEqual(self.player.turn_score, 0)
-
-        self.player.turn_score = 10
-        self.player.roll_score = 1
-        self.game.turn(self.player)
-        self.assertEqual(0, self.player.turn_score)
-
-        self.player.roll_score = 3
-        self.player.turn_score = 3
-        self.game.turn(self.player)
-        self.assertEqual(self.player.turn_score, 6)
-
-    def test_total(self):
-        self.player.turn_score = 6
-        self.player.total_score = 5
-        self.game.total(self.player)
-        self.assertEqual(self.player.total_score, 11)
-
-    def test_cheat(self):
-        self.game.cheat(self.player)
-        self.assertEqual(self.player.roll_score, self.dice.dice_max())
+    
+    def test_swich_player(self):
+        """Switch between computer and human player"""
+        self.gameplay.switch_player()
+        self.assertIs(self.current_player, self.computer_player)
         
-    def test_roll(self):
-        self.game.roll(self.player)
-        resault = self.player.roll_score
-        expected = self.dice.dice_min() <= resault <= self.dice.dice_max()
-        self.assertTrue(expected)
+        self.gameplay.switch_player
+        self.assertIs(self.current_player, self.computer_player)
 
 
 if __name__ == "__main__":

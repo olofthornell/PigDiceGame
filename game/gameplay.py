@@ -11,7 +11,6 @@ class Gameplay:
     def __init__(self, player):
         """Init game and player objects."""
         self.intell = Intelligence()
-        self._end_turn = False
         self._difficulty = self.intell.moderate()
         self.human_player = player
         self.computer_player = Player("cPIGu")
@@ -79,28 +78,23 @@ class Gameplay:
             print()
 
     def cpigu_roll(self):
-        """The cpu player rolles the dice"""
+        """The cpu player roll the dice"""
         self.game1.roll(self._current_player)
         self.turn()
-        if self._end_turn:
-            return True
-        else:
-            while self.computer_player.get_roll_score() != 1\
-                    and self.computer_player.get_turn_score()\
-                    < self._difficulty:
-                self.game1.roll(self._current_player)
-                self.turn()
+        while self.computer_player.get_roll_score() != 1\
+                and self.computer_player.get_turn_score()\
+                < self._difficulty:
+            self.game1.roll(self._current_player)
+            self.turn()
         if self._current_player == self.computer_player:
             self.game1.hold(self._current_player)
             self.switch_player()
 
     def cheat(self):
-        """Roll the dice and get a six"""
+        """Roll the dice and get max value of the dice"""
         print(f"{self.current_player().get_name()}")
         self.game1.cheat(self._current_player)
         self.turn()
-        if self._end_turn:
-            return True
 
     def roll(self):
         """Roll the dice"""
@@ -108,8 +102,6 @@ class Gameplay:
         print(f"{self.current_player().get_name()}")
         self.game1.roll(self._current_player)
         self.turn()
-        if self._end_turn:
-            return True
 
     def turn(self):
         """Print score for turn and total.
@@ -129,13 +121,19 @@ class Gameplay:
         if total + turn >= self.win_point:
             self.game1.total(self._current_player)
             print(f"{self._current_player.get_name()} is the winner!!!")
+            print()
+            print("Enter 'exit' to return to main menu")
+            print("Enter 'roll' to start a new game")
+            print("Enter 'help' for a list of commands")
+            print()
             self._current_player.add_win()
             self.human_player.add_games_played()
+            self.computer_player.set_roll_score(1)
             self.computer_player.set_turn_score(0)
             self.computer_player.set_total_score(0)
             self.human_player.set_turn_score(0)
             self.human_player.set_total_score(0)
-            self._end_turn = True
+            self._current_player = self.human_player
 
     def hold(self):
         """End turn and collect points"""

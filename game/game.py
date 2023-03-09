@@ -5,6 +5,7 @@ class Game:
     "Game mechanics in Pig game"
 
     def __init__(self):
+        """Init the object."""
         self.dice1 = Dice()
         # self._player = player
 
@@ -31,8 +32,10 @@ class Game:
             player.set_turn_score(new_turn_score)
 
     def total(self, player):
+        "Adds the score of the turn to the total score"
         new_total_score = player.get_total_score() + player.get_turn_score()
         player.set_total_score(new_total_score)
 
     def cheat(self, player):
+        "Get max value on a roll with the dice"
         player.set_roll_score(self.dice1.dice_max())

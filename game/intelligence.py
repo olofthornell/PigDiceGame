@@ -5,6 +5,7 @@ class Intelligence:
     """Cpu personality"""
 
     def __init__(self):
+        """Init the object."""
         self._coward = 4
         self._moderate = 15
         self._bold = 25
