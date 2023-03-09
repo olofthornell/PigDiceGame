@@ -1,9 +1,12 @@
+"""Hich_score class that keeps your high score list up to date."""
 import pickle
 
 
 class High_score():
-    """Init the object."""
+    """Creating high score class."""
+
     def __init__(self):
+        """Init the object."""
         self.high_score_dict = {}
         try:
             with open('high_score_file.bin', 'rb') as high_score_file:
@@ -17,12 +20,12 @@ class High_score():
                     pass
 
     def move_player_info(self, player, player_name):
-        """Moves the player stats from high_score to current player"""
+        """Moves the player stats from high_score to current player."""
         player.set_games_played(self.high_score_dict[player_name][0])
         player.set_wins(self.high_score_dict[player_name][1])
 
     def get_high_score(self):
-        """Prints the high_score list"""
+        """Prints the high_score list."""
         print(f"{'Name':<20}", end="")
         print(f"{'Wins':<20}", end="")
         print(f"{'Games played':<20}")
@@ -32,7 +35,7 @@ class High_score():
             print(self.high_score_dict[name][0])
 
     def save_current(self, player):
-        """Saves the current player to the high_score dictionary"""
+        """Saves the current player to the high_score dictionary."""
         name = player.get_name()
         games_played = player.get_games_played()
         wins = player.get_wins()
@@ -40,12 +43,12 @@ class High_score():
         self.high_score_dict[name] = games_wins_list
 
     def save(self):
-        """Saves the high_score dictionary to a bin file"""
+        """Saves the high_score dictionary to a bin file."""
         with open('high_score_file.bin', 'wb') as high_score_file:
             pickle.dump(self.high_score_dict, high_score_file)
 
     def clear_dict(self):
-        """Clears the dictionary from all high scores"""
+        """Clears the dictionary from all high scores."""
         print("Are you sure you want to clear the high score list?" +
               "\n" + "This can not be undone!")
         option = input("(y/n):")
@@ -56,6 +59,6 @@ class High_score():
             print("The high score list was not deleted.")
 
     def delete_name(self, old_name):
-        """Deletes a specific name with its stats from the high_score dictionary"""
+        """Deletes a specific name with its stats from the high_score dictionary."""
         if old_name in self.high_score_dict:
             del self.high_score_dict[old_name]

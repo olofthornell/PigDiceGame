@@ -12,7 +12,7 @@ class Shell2(cmd.Cmd):
         """Init the object."""
         super().__init__()
         self.print_welcome_graphic()
-        self._player_name = input("Enter your name? ")
+        self._player_name = input("Enter your name? ").lower()
         self.player = Player(self._player_name)
         self.h_score = High_score()
         if self._player_name in self.h_score.high_score_dict:
@@ -58,9 +58,12 @@ class Shell2(cmd.Cmd):
     def do_change_name(self, _):
         """Change player name"""
         old_name = self.player.get_name()
-        new_name = input("Enter new nickname: ")
-        self.player.set_name(new_name)
-        self.h_score.delete_name(old_name)
+        new_name = input("Enter new nickname: ").lower()
+        if new_name.lower() in self.h_score.high_score_dict:
+            print("Name is already taken.")
+        else:
+            self.player.set_name(new_name)
+            self.h_score.delete_name(old_name)
 
     def do_start(self, _):
         """Start the game"""
