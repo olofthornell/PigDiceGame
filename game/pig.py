@@ -1,4 +1,8 @@
 """A dice game namned Pig.
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5e0293857bfa2d38ef0365e4f8e20dfb3011f3bb
 First to reach 100 points wins
 """
 

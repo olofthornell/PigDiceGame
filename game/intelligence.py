@@ -1,8 +1,8 @@
-"""Holds the personality of the cpu player"""
+"""Holds the personality of the cpu player."""
 
 
 class Intelligence:
-    """Cpu personality"""
+    """Cpu personality."""
 
     def __init__(self):
         """Init the object."""
@@ -11,13 +11,13 @@ class Intelligence:
         self._bold = 25
 
     def coward(self):
-        """A cpu player that is a coward"""
+        """Set cpu player to a coward."""
         return self._coward
 
     def moderate(self):
-        """A cpu player that is moderate"""
+        """Set cpu player to moderate."""
         return self._moderate
 
     def bold(self):
-        """A cpu player that is bold"""
+        """Set cpu player to bold."""
         return self._bold
