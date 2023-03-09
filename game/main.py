@@ -1,11 +1,14 @@
-"""Importing."""
+"""A dice game namned Pig.
 
-from player import Player
-from high_score import High_score
+First to reach 100 points wins
+"""
+
+import shell2
 
 
 def main():
-    """Carries out main programm."""
+    """Execute the main program."""
+    shell2.Shell2().cmdloop()
 
 
 if __name__ == "__main__":
