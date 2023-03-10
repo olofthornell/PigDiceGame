@@ -1,0 +1,41 @@
+digraph "packages" {
+rankdir=BT
+charset="utf-8"
+"pig" [color="black", label=<pig>, shape="box", style="solid"];
+"pig.dice" [color="black", label=<pig.dice>, shape="box", style="solid"];
+"pig.game" [color="black", label=<pig.game>, shape="box", style="solid"];
+"pig.gameplay" [color="black", label=<pig.gameplay>, shape="box", style="solid"];
+"pig.high_score" [color="black", label=<pig.high_score>, shape="box", style="solid"];
+"pig.intelligence" [color="black", label=<pig.intelligence>, shape="box", style="solid"];
+"pig.main" [color="black", label=<pig.main>, shape="box", style="solid"];
+"pig.player" [color="black", label=<pig.player>, shape="box", style="solid"];
+"pig.shell1" [color="black", label=<pig.shell1>, shape="box", style="solid"];
+"pig.shell2" [color="black", label=<pig.shell2>, shape="box", style="solid"];
+"pig.test_dice" [color="black", label=<pig.test_dice>, shape="box", style="solid"];
+"pig.test_game" [color="black", label=<pig.test_game>, shape="box", style="solid"];
+"pig.test_gameplay" [color="black", label=<pig.test_gameplay>, shape="box", style="solid"];
+"pig.test_high_score" [color="black", label=<pig.test_high_score>, shape="box", style="solid"];
+"pig.test_intelligence" [color="black", label=<pig.test_intelligence>, shape="box", style="solid"];
+"pig.test_player" [color="black", label=<pig.test_player>, shape="box", style="solid"];
+"pig.game" -> "pig.dice" [arrowhead="open", arrowtail="none"];
+"pig.gameplay" -> "pig.game" [arrowhead="open", arrowtail="none"];
+"pig.gameplay" -> "pig.intelligence" [arrowhead="open", arrowtail="none"];
+"pig.gameplay" -> "pig.player" [arrowhead="open", arrowtail="none"];
+"pig.main" -> "pig.shell2" [arrowhead="open", arrowtail="none"];
+"pig.shell1" -> "pig.gameplay" [arrowhead="open", arrowtail="none"];
+"pig.shell2" -> "pig.high_score" [arrowhead="open", arrowtail="none"];
+"pig.shell2" -> "pig.player" [arrowhead="open", arrowtail="none"];
+"pig.shell2" -> "pig.shell1" [arrowhead="open", arrowtail="none"];
+"pig.test_dice" -> "pig.dice" [arrowhead="open", arrowtail="none"];
+"pig.test_game" -> "pig.dice" [arrowhead="open", arrowtail="none"];
+"pig.test_game" -> "pig.game" [arrowhead="open", arrowtail="none"];
+"pig.test_game" -> "pig.player" [arrowhead="open", arrowtail="none"];
+"pig.test_gameplay" -> "pig.game" [arrowhead="open", arrowtail="none"];
+"pig.test_gameplay" -> "pig.gameplay" [arrowhead="open", arrowtail="none"];
+"pig.test_gameplay" -> "pig.intelligence" [arrowhead="open", arrowtail="none"];
+"pig.test_gameplay" -> "pig.player" [arrowhead="open", arrowtail="none"];
+"pig.test_high_score" -> "pig.high_score" [arrowhead="open", arrowtail="none"];
+"pig.test_high_score" -> "pig.player" [arrowhead="open", arrowtail="none"];
+"pig.test_intelligence" -> "pig.intelligence" [arrowhead="open", arrowtail="none"];
+"pig.test_player" -> "pig.player" [arrowhead="open", arrowtail="none"];
+}
