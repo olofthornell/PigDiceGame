@@ -76,7 +76,7 @@ lint: flake8 pylint
 #
 black:
 	@$(call MESSAGE,$@)
-	 $(PYTHON) -m black game
+	 $(PYTHON) -m black game/
 
 codestyle: black
 
@@ -88,17 +88,17 @@ unittest:
 	# @$(call MESSAGE,$@)
 	#  $(PYTHON) -m unittest discover
 	@$(call MESSAGE,$@)
-    $(PYTHON) -m unittest discover -s <game> -p 'test*.py'
+	$(PYTHON) -m unittest discover -s <mapp med filer> -p 'test*.py'
 
 coverage:
 	# @$(call MESSAGE,$@)
 	# coverage run -m unittest discover
 	# coverage html
 	# coverage report -m
-    @$(call MESSAGE,$@)
-    coverage run -m unittest discover -s <game> -p 'test*.py'
-    coverage html
-    coverage report
+	@$(call MESSAGE,$@)
+	coverage run -m unittest discover -s <mapp med filer> -p 'test*.py'
+	coverage html
+	coverage report
 
 test: lint coverage
 
