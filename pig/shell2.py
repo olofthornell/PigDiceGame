@@ -2,9 +2,9 @@
 
 import time
 import cmd
-import shell1
-from pig.high_score import HighScore
-from pig.player import Player
+from pig.shell1 import Shell1
+from high_score import HighScore
+from player import Player
 
 
 class Shell2(cmd.Cmd):
@@ -74,7 +74,7 @@ class Shell2(cmd.Cmd):
 
     def do_start(self, _):
         """Start the game."""
-        shell1.Shell1(self.player).cmdloop()
+        Shell1(self.player).cmdloop()
 
     def do_rules(self, _):
         """Rules for pig game."""

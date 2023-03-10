@@ -98,7 +98,7 @@ class Gameplay():
 
     def cheat(self):
         """Roll the dice and get max value of the dice."""
-        print(f"{self.current_player().get_name()}")
+        print(f"{self.current_player.get_name()}")
         self.game1.cheat(self.current_player)
         self.turn()
 
