@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>shell2 API documentation</title>
+<meta name="description" content="Cmdloop that creates a outer shell and workes as a main menu." />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>shell2</code></h1>
+</header>
+<section id="section-intro">
+<p>Cmdloop that creates a outer shell and workes as a main menu.</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;Cmdloop that creates a outer shell and workes as a main menu.&#34;&#34;&#34;
+
+import time
+import cmd
+from pig.shell1 import Shell1
+from pig.high_score import HighScore
+from pig.player import Player
+
+
+class Shell2(cmd.Cmd):
+    &#34;&#34;&#34;Command actions for dice game gameplay.&#34;&#34;&#34;
+
+    def __init__(self):
+        &#34;&#34;&#34;Init the object.&#34;&#34;&#34;
+        super().__init__()
+        self.print_welcome_graphic()
+        self._player_name = input(&#34;Enter your name? &#34;).lower()
+        self.player = Player(self._player_name)
+        self.h_score = HighScore()
+        if self._player_name in self.h_score.high_score_dict:
+            self.h_score.move_player_info(self.player, self._player_name)
+        self.print_menu()
+
+    def print_welcome_graphic(self):
+        &#34;&#34;&#34;Print art for pig game.&#34;&#34;&#34;
+        print(&#39;\n&#39; * 40)
+        print(&#39;            88            &#39;)
+        print()
+        print(&#39;8b,dPPYba,  88  ,adPPYb,d8&#39;)
+        print(&#39;88P&#34;    &#34;8a 88 a8&#34;    &#34;Y88&#39;)
+        print(&#39;88       d8 88 8b       88&#39;)
+        print(&#39;88b,   ,a8&#34; 88 &#34;8a,   ,d88 &#39;)
+        print(&#39;88`YbbdP&#34;&#34;  88  &#34;&#34;YbbdP&#34;Y8&#39;)
+        print(&#39;88              aa,    ,88 &#39;)
+        print(&#39;88               &#34;Y8bbdP&#34;&#39;)
+        print(&#39;&#39;)
+
+    def print_menu(self):
+        &#34;&#34;&#34;Print main menu.&#34;&#34;&#34;
+        print()
+        print()
+        print(f&#34;Welcome {self._player_name}! Let&#39;s pass some pigs&#34;)
+        time.sleep(2)
+        print()
+        print(&#34;Commands:&#34;)
+        print(&#34;-&#34; * 79)
+        print(f&#34;{&#39;start&#39;:20}| Start a new round of the game &#34;)
+        print(&#34;-&#34; * 79)
+        print(f&#34;{&#39;rules&#39;:20}| Read the rules of the game&#34;)
+        print(&#34;-&#34; * 79)
+        print(f&#34;{&#39;high_score&#39;:20}| Show list of players wins&#34;)
+        print(&#34;-&#34; * 79)
+        print(f&#34;{&#39;clear_high_score&#39;:20}| Clear the high score&#34;)
+        print(&#34;-&#34; * 79)
+        print(f&#34;{&#39;change_name&#39;:20}| Change your nickname&#34;)
+        print(&#34;-&#34; * 79)
+        print(f&#34;{&#39;exit&#39;:20}| Exit the program&#34;)
+        print(&#34;-&#34; * 79)
+        print()
+
+    def player_name(self):
+        &#34;&#34;&#34;Return human player name.&#34;&#34;&#34;
+        return self._player_name
+
+    def do_change_name(self, _):
+        &#34;&#34;&#34;Change player name.&#34;&#34;&#34;
+        old_name = self.player.get_name()
+        new_name = input(&#34;Enter new nickname: &#34;).lower()
+        if new_name.lower() in self.h_score.high_score_dict:
+            print(&#34;Name is already taken.&#34;)
+        else:
+            self.player.set_name(new_name)
+            self.h_score.delete_name(old_name)
+
+    def do_start(self, _):
+        &#34;&#34;&#34;Start the game.&#34;&#34;&#34;
+        Shell1(self.player).cmdloop()
+
+    def do_rules(self, _):
+        &#34;&#34;&#34;Rules for pig game.&#34;&#34;&#34;
+        print()
+        print(&#34;-&#34; * 79)
+        print(&#34;Pig game rules:&#34;)
+        print(&#34;-&#34; * 79)
+        print(&#34;1. Roll the dice and try to be the first to reach 100 points.&#34;)
+        print(&#34;2. Players take turns and roll as many times as they wish.&#34;)
+        print(&#34;3. All roll results are added to a running total.&#34;)
+        print(&#34;4. If you roll a 1 you loose all gained score for the turn.&#34;)
+        print(&#34;5. Ending a turn will save your points to a total.&#34;)
+        print()
+
+    def do_high_score(self, _):
+        &#34;&#34;&#34;Show high score.&#34;&#34;&#34;
+        self.h_score.save_current(self.player)
+        self.h_score.get_high_score()
+
+    def do_clear_high_score(self, _):
+        &#34;&#34;&#34;Clear the high score.&#34;&#34;&#34;
+        self.h_score.clear_dict()
+        self.player.clear_player_stats(self.player)
+
+    def do_exit(self, _):
+        &#34;&#34;&#34;Exit the program.&#34;&#34;&#34;
+        print(&#34;Exit the program&#34;)
+        print(&#34;See you next time&#34;)
+        self.h_score.save_current(self.player)
+        self.h_score.save()
+        return True
+
+    def default(self, line):
+        &#34;&#34;&#34;Print error message when entering wrong command.&#34;&#34;&#34;
+        print(&#34;Wrong command. Type &#39;help&#39; for a list of commands.&#34;)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="shell2.Shell2"><code class="flex name class">
+<span>class <span class="ident">Shell2</span></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Command actions for dice game gameplay.</p>
+<p>Init the object.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Shell2(cmd.Cmd):
+    &#34;&#34;&#34;Command actions for dice game gameplay.&#34;&#34;&#34;
+
+    def __init__(self):
+        &#34;&#34;&#34;Init the object.&#34;&#34;&#34;
+        super().__init__()
+        self.print_welcome_graphic()
+        self._player_name = input(&#34;Enter your name? &#34;).lower()
+        self.player = Player(self._player_name)
+        self.h_score = HighScore()
+        if self._player_name in self.h_score.high_score_dict:
+            self.h_score.move_player_info(self.player, self._player_name)
+        self.print_menu()
+
+    def print_welcome_graphic(self):
+        &#34;&#34;&#34;Print art for pig game.&#34;&#34;&#34;
+        print(&#39;\n&#39; * 40)
+        print(&#39;            88            &#39;)
+        print()
+        print(&#39;8b,dPPYba,  88  ,adPPYb,d8&#39;)
+        print(&#39;88P&#34;    &#34;8a 88 a8&#34;    &#34;Y88&#39;)
+        print(&#39;88       d8 88 8b       88&#39;)
+        print(&#39;88b,   ,a8&#34; 88 &#34;8a,   ,d88 &#39;)
+        print(&#39;88`YbbdP&#34;&#34;  88  &#34;&#34;YbbdP&#34;Y8&#39;)
+        print(&#39;88              aa,    ,88 &#39;)
+        print(&#39;88               &#34;Y8bbdP&#34;&#39;)
+        print(&#39;&#39;)
+
+    def print_menu(self):
+        &#34;&#34;&#34;Print main menu.&#34;&#34;&#34;
+        print()
+        print()
+        print(f&#34;Welcome {self._player_name}! Let&#39;s pass some pigs&#34;)
+        time.sleep(2)
+        print()
+        print(&#34;Commands:&#34;)
+        print(&#34;-&#34; * 79)
+        print(f&#34;{&#39;start&#39;:20}| Start a new round of the game &#34;)
+        print(&#34;-&#34; * 79)
+        print(f&#34;{&#39;rules&#39;:20}| Read the rules of the game&#34;)
+        print(&#34;-&#34; * 79)
+        print(f&#34;{&#39;high_score&#39;:20}| Show list of players wins&#34;)
+        print(&#34;-&#34; * 79)
+        print(f&#34;{&#39;clear_high_score&#39;:20}| Clear the high score&#34;)
+        print(&#34;-&#34; * 79)
+        print(f&#34;{&#39;change_name&#39;:20}| Change your nickname&#34;)
+        print(&#34;-&#34; * 79)
+        print(f&#34;{&#39;exit&#39;:20}| Exit the program&#34;)
+        print(&#34;-&#34; * 79)
+        print()
+
+    def player_name(self):
+        &#34;&#34;&#34;Return human player name.&#34;&#34;&#34;
+        return self._player_name
+
+    def do_change_name(self, _):
+        &#34;&#34;&#34;Change player name.&#34;&#34;&#34;
+        old_name = self.player.get_name()
+        new_name = input(&#34;Enter new nickname: &#34;).lower()
+        if new_name.lower() in self.h_score.high_score_dict:
+            print(&#34;Name is already taken.&#34;)
+        else:
+            self.player.set_name(new_name)
+            self.h_score.delete_name(old_name)
+
+    def do_start(self, _):
+        &#34;&#34;&#34;Start the game.&#34;&#34;&#34;
+        Shell1(self.player).cmdloop()
+
+    def do_rules(self, _):
+        &#34;&#34;&#34;Rules for pig game.&#34;&#34;&#34;
+        print()
+        print(&#34;-&#34; * 79)
+        print(&#34;Pig game rules:&#34;)
+        print(&#34;-&#34; * 79)
+        print(&#34;1. Roll the dice and try to be the first to reach 100 points.&#34;)
+        print(&#34;2. Players take turns and roll as many times as they wish.&#34;)
+        print(&#34;3. All roll results are added to a running total.&#34;)
+        print(&#34;4. If you roll a 1 you loose all gained score for the turn.&#34;)
+        print(&#34;5. Ending a turn will save your points to a total.&#34;)
+        print()
+
+    def do_high_score(self, _):
+        &#34;&#34;&#34;Show high score.&#34;&#34;&#34;
+        self.h_score.save_current(self.player)
+        self.h_score.get_high_score()
+
+    def do_clear_high_score(self, _):
+        &#34;&#34;&#34;Clear the high score.&#34;&#34;&#34;
+        self.h_score.clear_dict()
+        self.player.clear_player_stats(self.player)
+
+    def do_exit(self, _):
+        &#34;&#34;&#34;Exit the program.&#34;&#34;&#34;
+        print(&#34;Exit the program&#34;)
+        print(&#34;See you next time&#34;)
+        self.h_score.save_current(self.player)
+        self.h_score.save()
+        return True
+
+    def default(self, line):
+        &#34;&#34;&#34;Print error message when entering wrong command.&#34;&#34;&#34;
+        print(&#34;Wrong command. Type &#39;help&#39; for a list of commands.&#34;)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>cmd.Cmd</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="shell2.Shell2.default"><code class="name flex">
+<span>def <span class="ident">default</span></span>(<span>self, line)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Print error message when entering wrong command.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def default(self, line):
+    &#34;&#34;&#34;Print error message when entering wrong command.&#34;&#34;&#34;
+    print(&#34;Wrong command. Type &#39;help&#39; for a list of commands.&#34;)</code></pre>
+</details>
+</dd>
+<dt id="shell2.Shell2.do_change_name"><code class="name flex">
+<span>def <span class="ident">do_change_name</span></span>(<span>self, _)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Change player name.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def do_change_name(self, _):
+    &#34;&#34;&#34;Change player name.&#34;&#34;&#34;
+    old_name = self.player.get_name()
+    new_name = input(&#34;Enter new nickname: &#34;).lower()
+    if new_name.lower() in self.h_score.high_score_dict:
+        print(&#34;Name is already taken.&#34;)
+    else:
+        self.player.set_name(new_name)
+        self.h_score.delete_name(old_name)</code></pre>
+</details>
+</dd>
+<dt id="shell2.Shell2.do_clear_high_score"><code class="name flex">
+<span>def <span class="ident">do_clear_high_score</span></span>(<span>self, _)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Clear the high score.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def do_clear_high_score(self, _):
+    &#34;&#34;&#34;Clear the high score.&#34;&#34;&#34;
+    self.h_score.clear_dict()
+    self.player.clear_player_stats(self.player)</code></pre>
+</details>
+</dd>
+<dt id="shell2.Shell2.do_exit"><code class="name flex">
+<span>def <span class="ident">do_exit</span></span>(<span>self, _)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Exit the program.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def do_exit(self, _):
+    &#34;&#34;&#34;Exit the program.&#34;&#34;&#34;
+    print(&#34;Exit the program&#34;)
+    print(&#34;See you next time&#34;)
+    self.h_score.save_current(self.player)
+    self.h_score.save()
+    return True</code></pre>
+</details>
+</dd>
+<dt id="shell2.Shell2.do_high_score"><code class="name flex">
+<span>def <span class="ident">do_high_score</span></span>(<span>self, _)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Show high score.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def do_high_score(self, _):
+    &#34;&#34;&#34;Show high score.&#34;&#34;&#34;
+    self.h_score.save_current(self.player)
+    self.h_score.get_high_score()</code></pre>
+</details>
+</dd>
+<dt id="shell2.Shell2.do_rules"><code class="name flex">
+<span>def <span class="ident">do_rules</span></span>(<span>self, _)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Rules for pig game.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def do_rules(self, _):
+    &#34;&#34;&#34;Rules for pig game.&#34;&#34;&#34;
+    print()
+    print(&#34;-&#34; * 79)
+    print(&#34;Pig game rules:&#34;)
+    print(&#34;-&#34; * 79)
+    print(&#34;1. Roll the dice and try to be the first to reach 100 points.&#34;)
+    print(&#34;2. Players take turns and roll as many times as they wish.&#34;)
+    print(&#34;3. All roll results are added to a running total.&#34;)
+    print(&#34;4. If you roll a 1 you loose all gained score for the turn.&#34;)
+    print(&#34;5. Ending a turn will save your points to a total.&#34;)
+    print()</code></pre>
+</details>
+</dd>
+<dt id="shell2.Shell2.do_start"><code class="name flex">
+<span>def <span class="ident">do_start</span></span>(<span>self, _)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Start the game.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def do_start(self, _):
+    &#34;&#34;&#34;Start the game.&#34;&#34;&#34;
+    Shell1(self.player).cmdloop()</code></pre>
+</details>
+</dd>
+<dt id="shell2.Shell2.player_name"><code class="name flex">
+<span>def <span class="ident">player_name</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return human player name.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def player_name(self):
+    &#34;&#34;&#34;Return human player name.&#34;&#34;&#34;
+    return self._player_name</code></pre>
+</details>
+</dd>
+<dt id="shell2.Shell2.print_menu"><code class="name flex">
+<span>def <span class="ident">print_menu</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Print main menu.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def print_menu(self):
+    &#34;&#34;&#34;Print main menu.&#34;&#34;&#34;
+    print()
+    print()
+    print(f&#34;Welcome {self._player_name}! Let&#39;s pass some pigs&#34;)
+    time.sleep(2)
+    print()
+    print(&#34;Commands:&#34;)
+    print(&#34;-&#34; * 79)
+    print(f&#34;{&#39;start&#39;:20}| Start a new round of the game &#34;)
+    print(&#34;-&#34; * 79)
+    print(f&#34;{&#39;rules&#39;:20}| Read the rules of the game&#34;)
+    print(&#34;-&#34; * 79)
+    print(f&#34;{&#39;high_score&#39;:20}| Show list of players wins&#34;)
+    print(&#34;-&#34; * 79)
+    print(f&#34;{&#39;clear_high_score&#39;:20}| Clear the high score&#34;)
+    print(&#34;-&#34; * 79)
+    print(f&#34;{&#39;change_name&#39;:20}| Change your nickname&#34;)
+    print(&#34;-&#34; * 79)
+    print(f&#34;{&#39;exit&#39;:20}| Exit the program&#34;)
+    print(&#34;-&#34; * 79)
+    print()</code></pre>
+</details>
+</dd>
+<dt id="shell2.Shell2.print_welcome_graphic"><code class="name flex">
+<span>def <span class="ident">print_welcome_graphic</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Print art for pig game.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def print_welcome_graphic(self):
+    &#34;&#34;&#34;Print art for pig game.&#34;&#34;&#34;
+    print(&#39;\n&#39; * 40)
+    print(&#39;            88            &#39;)
+    print()
+    print(&#39;8b,dPPYba,  88  ,adPPYb,d8&#39;)
+    print(&#39;88P&#34;    &#34;8a 88 a8&#34;    &#34;Y88&#39;)
+    print(&#39;88       d8 88 8b       88&#39;)
+    print(&#39;88b,   ,a8&#34; 88 &#34;8a,   ,d88 &#39;)
+    print(&#39;88`YbbdP&#34;&#34;  88  &#34;&#34;YbbdP&#34;Y8&#39;)
+    print(&#39;88              aa,    ,88 &#39;)
+    print(&#39;88               &#34;Y8bbdP&#34;&#39;)
+    print(&#39;&#39;)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="shell2.Shell2" href="#shell2.Shell2">Shell2</a></code></h4>
+<ul class="">
+<li><code><a title="shell2.Shell2.default" href="#shell2.Shell2.default">default</a></code></li>
+<li><code><a title="shell2.Shell2.do_change_name" href="#shell2.Shell2.do_change_name">do_change_name</a></code></li>
+<li><code><a title="shell2.Shell2.do_clear_high_score" href="#shell2.Shell2.do_clear_high_score">do_clear_high_score</a></code></li>
+<li><code><a title="shell2.Shell2.do_exit" href="#shell2.Shell2.do_exit">do_exit</a></code></li>
+<li><code><a title="shell2.Shell2.do_high_score" href="#shell2.Shell2.do_high_score">do_high_score</a></code></li>
+<li><code><a title="shell2.Shell2.do_rules" href="#shell2.Shell2.do_rules">do_rules</a></code></li>
+<li><code><a title="shell2.Shell2.do_start" href="#shell2.Shell2.do_start">do_start</a></code></li>
+<li><code><a title="shell2.Shell2.player_name" href="#shell2.Shell2.player_name">player_name</a></code></li>
+<li><code><a title="shell2.Shell2.print_menu" href="#shell2.Shell2.print_menu">print_menu</a></code></li>
+<li><code><a title="shell2.Shell2.print_welcome_graphic" href="#shell2.Shell2.print_welcome_graphic">print_welcome_graphic</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

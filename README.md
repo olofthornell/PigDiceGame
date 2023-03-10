@@ -1,18 +1,18 @@
-Python development project template
+Pig dice game project
 ==========================
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-A template for a Python development project.
+Info about the development of Pig dice game. A game were you play against a computer player. First player to reach 100 point are the winner. If you hit 1 your score of the turn is set to zero and the turn ends.
 
 [[_TOC_]]
 
 
 
-Get going
+Instructions
 --------------------------
 
-This is how you can work with the development environment.
+Important things about the project
 
 
 
@@ -78,14 +78,23 @@ Read more on [Python PIP](https://pypi.org/project/pip/).
 
 ### Run the code
 
-The example program can be started like this.
+To run the program write the following. It is important to Use the GitBash terminal.
+If the game cant find the modules do the following.
+
+```
+
+# Go to the root of the project
+# In gitbash write like this:
+export PYTHONPATH=.
+
+ then run the program again
 
 ```
 # Execute the main program
-python guess/main.py
+python pig/main.py
 ```
 
-All code is stored below the directory `guess/`.
+All code is stored below the directory `pig/`.
 
 
 
@@ -102,18 +111,9 @@ make pylint
 make lint
 ```
 
-You might need to update the Makefile if you change the name of the source directory currently named `guess/`.
-
-Read more on:
-
-* [flake8](https://flake8.pycqa.org/en/latest/)
-* [pylint](https://pylint.org/)
-
-
-
 ### Run the unittests
 
-You can run the unittests like this. The testfiles are stored in the `test/` directory.
+You can run the unittests like this. The testfiles are also stored in the `pig/` directory.
 
 ```
 # Run unttests without coverage
@@ -129,7 +129,7 @@ make test
 You can open a web browser to inspect the code coverage as a generated HTML report.
 
 ```
-firefox htmlcov/index.html
+<browser> htmlcov/index.html
 ```
 
 Read more on:
@@ -192,9 +192,3 @@ make codestyle
 
 Read more on [black](https://pypi.org/project/black/).
 
-
-
-More targets
---------------------------
-
-The Makefile contains more targets, they are however not yet tested on this directory structure.
