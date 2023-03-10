@@ -89,13 +89,11 @@ export PYTHONPATH=.
 
  then run the program again
 
-```
 # Execute the main program
 python pig/main.py
 ```
 
-All code is stored below the directory `pig/`.
-
+All code is stored in the directory `pig/`.
 
 
 ### Run the validators
@@ -109,6 +107,7 @@ make pylint
 
 # Run all on the same time
 make lint
+
 ```
 
 ### Run the unittests
