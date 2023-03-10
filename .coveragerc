@@ -2,12 +2,12 @@
 omit =
     test_*.py
     test/*
-    game/test*.py
+    pig/test*.py
     */__init__.py
 
 [report]
 omit =
     test_*.py
-    game/test*.py
+    pig/test*.py
     test/*
     */__init__.py
