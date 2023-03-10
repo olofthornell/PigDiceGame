@@ -1,9 +1,9 @@
 """Keep track of player score."""
 
-from dice import Dice
+from game.dice import Dice
 
 
-class Game:
+class Game():
     """Game mechanics in Pig game."""
 
     def __init__(self):

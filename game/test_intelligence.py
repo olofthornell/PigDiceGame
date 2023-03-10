@@ -1,6 +1,6 @@
 """Unit testing intelligence."""
 import unittest
-from intelligence import Intelligence
+from game.intelligence import Intelligence
 
 
 class TestIntelligence(unittest.TestCase):

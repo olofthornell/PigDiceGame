@@ -1,7 +1,7 @@
 """Holds the personality of the cpu player."""
 
 
-class Intelligence:
+class Intelligence():
     """Cpu personality."""
 
     def __init__(self):

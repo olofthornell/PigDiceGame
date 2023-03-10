@@ -1,6 +1,6 @@
 """Testing high_score class."""
 import unittest
-import high_score
+from game.high_score import High_score
 
 
 def test_init_default_object(self):

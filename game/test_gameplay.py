@@ -1,9 +1,9 @@
 """Test gameplay class."""
 import unittest
 
-from game import Game
-from player import Player
-from gameplay import Gameplay
+from game.game import Game
+from game.player import Player
+from game.gameplay import Gameplay
 
 
 class TestGameplay(unittest.TestCase):

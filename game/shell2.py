@@ -3,8 +3,8 @@
 import time
 import cmd
 import shell1
-from high_score import High_score
-from player import Player
+from game.high_score import High_score
+from game.player import Player
 
 
 class Shell2(cmd.Cmd):

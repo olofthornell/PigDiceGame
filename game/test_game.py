@@ -1,8 +1,8 @@
 """Unit testing gameplay."""
 import unittest
-from dice import Dice
-from player import Player
-from game import Game
+from game.dice import Dice
+from game.player import Player
+from game.game import Game
 
 
 class TestGame(unittest.TestCase):

@@ -1,7 +1,7 @@
 """Cmdloop that holds the gameplay."""
 
 import cmd
-from gameplay import Gameplay
+from game.gameplay import Gameplay
 
 
 class Shell1(cmd.Cmd):

@@ -1,12 +1,12 @@
 """Gameplay mechanics for Pig game."""
 
 import time
-from intelligence import Intelligence
-from player import Player
-from game import Game
+from game.intelligence import Intelligence
+from game.player import Player
+from game.game import Game
 
 
-class Gameplay:
+class Gameplay():
     """Gameplay for Pig game."""
 
     def __init__(self, player):
