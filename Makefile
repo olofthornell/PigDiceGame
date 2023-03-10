@@ -85,18 +85,18 @@ codestyle: black
 # Work with unit test and code coverage.
 #
 unittest:
-	# @$(call MESSAGE,$@)
-	#  $(PYTHON) -m unittest discover
+# @$(call MESSAGE,$@)
+#  $(PYTHON) -m unittest discover
 	@$(call MESSAGE,$@)
-	$(PYTHON) -m unittest discover -s <mapp med filer> -p 'test*.py'
+	$(PYTHON) -m unittest discover -s game -p 'test*.py'
 
 coverage:
-	# @$(call MESSAGE,$@)
-	# coverage run -m unittest discover
-	# coverage html
-	# coverage report -m
+# @$(call MESSAGE,$@)
+# coverage run -m unittest discover
+# coverage html
+# coverage report -m
 	@$(call MESSAGE,$@)
-	coverage run -m unittest discover -s <mapp med filer> -p 'test*.py'
+	coverage run -m unittest discover -s game -p 'test*.py'
 	coverage html
 	coverage report
 
