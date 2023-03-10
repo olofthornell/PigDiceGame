@@ -236,26 +236,3 @@ make pyreverse
 
 # Generate documentation
 make pdoc
-
-```
-
-
-Optional targets
---------------------------
-
-These targets might be helpful when running your project.
-
-
-
-### Codestyle with black
-
-You can unify the codestyle using black. Running black will change your source code to have a codestyle according to black codestyle.
-
-```
-# Same same, different names
-make black
-make codestyle
-```
-
-Read more on [black](https://pypi.org/project/black/).
-
