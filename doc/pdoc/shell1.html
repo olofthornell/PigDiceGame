@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.10.0" />
-<title>game API documentation</title>
-<meta name="description" content="Keep track of player score." />
+<title>shell1 API documentation</title>
+<meta name="description" content="Cmdloop that holds the gameplay." />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
 <link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
@@ -19,60 +19,53 @@
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>game</code></h1>
+<h1 class="title">Module <code>shell1</code></h1>
 </header>
 <section id="section-intro">
-<p>Keep track of player score.</p>
+<p>Cmdloop that holds the gameplay.</p>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">&#34;&#34;&#34;Keep track of player score.&#34;&#34;&#34;
+<pre><code class="python">&#34;&#34;&#34;Cmdloop that holds the gameplay.&#34;&#34;&#34;
 
-from dice import Dice
+import cmd
+from gameplay import Gameplay
 
 
-class Game:
-    &#34;&#34;&#34;Game mechanics in Pig game.&#34;&#34;&#34;
+class Shell1(cmd.Cmd):
+    &#34;&#34;&#34;Command actions for dice game main menu.&#34;&#34;&#34;
 
-    def __init__(self):
-        &#34;&#34;&#34;Init the object.&#34;&#34;&#34;
-        self.dice1 = Dice()
+    def __init__(self, player):
+        &#34;&#34;&#34;Init gameplay object.&#34;&#34;&#34;
+        super().__init__()
+        self.gameplay = Gameplay(player)
 
-    def roll(self, player):
-        &#34;&#34;&#34;Roll dice and get the score for the roll.&#34;&#34;&#34;
-        player.set_roll_score(self.dice1.roll())
+    def do_difficulty(self, arg):
+        &#34;&#34;&#34;Choose personality on opponent cPIGu.&#34;&#34;&#34;
+        self.gameplay.difficulty(arg)
 
-    def hold(self, player):
-        &#34;&#34;&#34;Score for turn is transferred to total.
+    def do_cheat(self, _):
+        &#34;&#34;&#34;Roll the dice and get a six.&#34;&#34;&#34;
+        self.gameplay.cheat()
 
-        Turn score is being set to 0.
-        &#34;&#34;&#34;
-        self.total(player)
-        player.set_turn_score(0)
+    def do_roll(self, _):
+        &#34;&#34;&#34;Roll the dice.&#34;&#34;&#34;
+        self.gameplay.roll()
 
-    def turn(self, player):
-        &#34;&#34;&#34;Dice score is transferred to turn score. If dice score is 1.
+    def do_hold(self, _):
+        &#34;&#34;&#34;End turn and collect points.&#34;&#34;&#34;
+        self.gameplay.hold()
 
-        Then turn score is set to 0.
-        &#34;&#34;&#34;
-        if player.get_roll_score() == 1:
-            player.set_turn_score(0)
-            self.total(player)
-        else:
-            turn = player.get_turn_score()
-            roll = player.get_roll_score()
-            new_turn_score = turn + roll
-            player.set_turn_score(new_turn_score)
+    def do_exit(self, _):
+        &#34;&#34;&#34;Exit gameplay and return to main menu.&#34;&#34;&#34;
+        print(&#34;Returning to main menu.&#34;)
+        return True
 
-    def total(self, player):
-        &#34;&#34;&#34;Add the score of the turn to the total score.&#34;&#34;&#34;
-        new_total_score = player.get_total_score() + player.get_turn_score()
-        player.set_total_score(new_total_score)
-
-    def cheat(self, player):
-        &#34;&#34;&#34;Get max value on a roll with the dice.&#34;&#34;&#34;
-        player.set_roll_score(self.dice1.dice_max())</code></pre>
+    def postloop(self):
+        &#34;&#34;&#34;Show help information after the gameplay ends.&#34;&#34;&#34;
+        print(&#34;Type &#39;help&#39; for a list of commands.&#34;)
+        super().postloop</code></pre>
 </details>
 </section>
 <section>
@@ -84,145 +77,141 @@ class Game:
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
-<dt id="game.Game"><code class="flex name class">
-<span>class <span class="ident">Game</span></span>
+<dt id="shell1.Shell1"><code class="flex name class">
+<span>class <span class="ident">Shell1</span></span>
+<span>(</span><span>player)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Game mechanics in Pig game.</p>
-<p>Init the object.</p></div>
+<div class="desc"><p>Command actions for dice game main menu.</p>
+<p>Init gameplay object.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">class Game:
-    &#34;&#34;&#34;Game mechanics in Pig game.&#34;&#34;&#34;
+<pre><code class="python">class Shell1(cmd.Cmd):
+    &#34;&#34;&#34;Command actions for dice game main menu.&#34;&#34;&#34;
 
-    def __init__(self):
-        &#34;&#34;&#34;Init the object.&#34;&#34;&#34;
-        self.dice1 = Dice()
+    def __init__(self, player):
+        &#34;&#34;&#34;Init gameplay object.&#34;&#34;&#34;
+        super().__init__()
+        self.gameplay = Gameplay(player)
 
-    def roll(self, player):
-        &#34;&#34;&#34;Roll dice and get the score for the roll.&#34;&#34;&#34;
-        player.set_roll_score(self.dice1.roll())
+    def do_difficulty(self, arg):
+        &#34;&#34;&#34;Choose personality on opponent cPIGu.&#34;&#34;&#34;
+        self.gameplay.difficulty(arg)
 
-    def hold(self, player):
-        &#34;&#34;&#34;Score for turn is transferred to total.
+    def do_cheat(self, _):
+        &#34;&#34;&#34;Roll the dice and get a six.&#34;&#34;&#34;
+        self.gameplay.cheat()
 
-        Turn score is being set to 0.
-        &#34;&#34;&#34;
-        self.total(player)
-        player.set_turn_score(0)
+    def do_roll(self, _):
+        &#34;&#34;&#34;Roll the dice.&#34;&#34;&#34;
+        self.gameplay.roll()
 
-    def turn(self, player):
-        &#34;&#34;&#34;Dice score is transferred to turn score. If dice score is 1.
+    def do_hold(self, _):
+        &#34;&#34;&#34;End turn and collect points.&#34;&#34;&#34;
+        self.gameplay.hold()
 
-        Then turn score is set to 0.
-        &#34;&#34;&#34;
-        if player.get_roll_score() == 1:
-            player.set_turn_score(0)
-            self.total(player)
-        else:
-            turn = player.get_turn_score()
-            roll = player.get_roll_score()
-            new_turn_score = turn + roll
-            player.set_turn_score(new_turn_score)
+    def do_exit(self, _):
+        &#34;&#34;&#34;Exit gameplay and return to main menu.&#34;&#34;&#34;
+        print(&#34;Returning to main menu.&#34;)
+        return True
 
-    def total(self, player):
-        &#34;&#34;&#34;Add the score of the turn to the total score.&#34;&#34;&#34;
-        new_total_score = player.get_total_score() + player.get_turn_score()
-        player.set_total_score(new_total_score)
-
-    def cheat(self, player):
-        &#34;&#34;&#34;Get max value on a roll with the dice.&#34;&#34;&#34;
-        player.set_roll_score(self.dice1.dice_max())</code></pre>
+    def postloop(self):
+        &#34;&#34;&#34;Show help information after the gameplay ends.&#34;&#34;&#34;
+        print(&#34;Type &#39;help&#39; for a list of commands.&#34;)
+        super().postloop</code></pre>
 </details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>cmd.Cmd</li>
+</ul>
 <h3>Methods</h3>
 <dl>
-<dt id="game.Game.cheat"><code class="name flex">
-<span>def <span class="ident">cheat</span></span>(<span>self, player)</span>
+<dt id="shell1.Shell1.do_cheat"><code class="name flex">
+<span>def <span class="ident">do_cheat</span></span>(<span>self, _)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Get max value on a roll with the dice.</p></div>
+<div class="desc"><p>Roll the dice and get a six.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def cheat(self, player):
-    &#34;&#34;&#34;Get max value on a roll with the dice.&#34;&#34;&#34;
-    player.set_roll_score(self.dice1.dice_max())</code></pre>
+<pre><code class="python">def do_cheat(self, _):
+    &#34;&#34;&#34;Roll the dice and get a six.&#34;&#34;&#34;
+    self.gameplay.cheat()</code></pre>
 </details>
 </dd>
-<dt id="game.Game.hold"><code class="name flex">
-<span>def <span class="ident">hold</span></span>(<span>self, player)</span>
+<dt id="shell1.Shell1.do_difficulty"><code class="name flex">
+<span>def <span class="ident">do_difficulty</span></span>(<span>self, arg)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Score for turn is transferred to total.</p>
-<p>Turn score is being set to 0.</p></div>
+<div class="desc"><p>Choose personality on opponent cPIGu.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def hold(self, player):
-    &#34;&#34;&#34;Score for turn is transferred to total.
-
-    Turn score is being set to 0.
-    &#34;&#34;&#34;
-    self.total(player)
-    player.set_turn_score(0)</code></pre>
+<pre><code class="python">def do_difficulty(self, arg):
+    &#34;&#34;&#34;Choose personality on opponent cPIGu.&#34;&#34;&#34;
+    self.gameplay.difficulty(arg)</code></pre>
 </details>
 </dd>
-<dt id="game.Game.roll"><code class="name flex">
-<span>def <span class="ident">roll</span></span>(<span>self, player)</span>
+<dt id="shell1.Shell1.do_exit"><code class="name flex">
+<span>def <span class="ident">do_exit</span></span>(<span>self, _)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Roll dice and get the score for the roll.</p></div>
+<div class="desc"><p>Exit gameplay and return to main menu.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def roll(self, player):
-    &#34;&#34;&#34;Roll dice and get the score for the roll.&#34;&#34;&#34;
-    player.set_roll_score(self.dice1.roll())</code></pre>
+<pre><code class="python">def do_exit(self, _):
+    &#34;&#34;&#34;Exit gameplay and return to main menu.&#34;&#34;&#34;
+    print(&#34;Returning to main menu.&#34;)
+    return True</code></pre>
 </details>
 </dd>
-<dt id="game.Game.total"><code class="name flex">
-<span>def <span class="ident">total</span></span>(<span>self, player)</span>
+<dt id="shell1.Shell1.do_hold"><code class="name flex">
+<span>def <span class="ident">do_hold</span></span>(<span>self, _)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Add the score of the turn to the total score.</p></div>
+<div class="desc"><p>End turn and collect points.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def total(self, player):
-    &#34;&#34;&#34;Add the score of the turn to the total score.&#34;&#34;&#34;
-    new_total_score = player.get_total_score() + player.get_turn_score()
-    player.set_total_score(new_total_score)</code></pre>
+<pre><code class="python">def do_hold(self, _):
+    &#34;&#34;&#34;End turn and collect points.&#34;&#34;&#34;
+    self.gameplay.hold()</code></pre>
 </details>
 </dd>
-<dt id="game.Game.turn"><code class="name flex">
-<span>def <span class="ident">turn</span></span>(<span>self, player)</span>
+<dt id="shell1.Shell1.do_roll"><code class="name flex">
+<span>def <span class="ident">do_roll</span></span>(<span>self, _)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Dice score is transferred to turn score. If dice score is 1.</p>
-<p>Then turn score is set to 0.</p></div>
+<div class="desc"><p>Roll the dice.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def turn(self, player):
-    &#34;&#34;&#34;Dice score is transferred to turn score. If dice score is 1.
-
-    Then turn score is set to 0.
-    &#34;&#34;&#34;
-    if player.get_roll_score() == 1:
-        player.set_turn_score(0)
-        self.total(player)
-    else:
-        turn = player.get_turn_score()
-        roll = player.get_roll_score()
-        new_turn_score = turn + roll
-        player.set_turn_score(new_turn_score)</code></pre>
+<pre><code class="python">def do_roll(self, _):
+    &#34;&#34;&#34;Roll the dice.&#34;&#34;&#34;
+    self.gameplay.roll()</code></pre>
+</details>
+</dd>
+<dt id="shell1.Shell1.postloop"><code class="name flex">
+<span>def <span class="ident">postloop</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Show help information after the gameplay ends.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def postloop(self):
+    &#34;&#34;&#34;Show help information after the gameplay ends.&#34;&#34;&#34;
+    print(&#34;Type &#39;help&#39; for a list of commands.&#34;)
+    super().postloop</code></pre>
 </details>
 </dd>
 </dl>
@@ -239,13 +228,14 @@ class Game:
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
 <li>
-<h4><code><a title="game.Game" href="#game.Game">Game</a></code></h4>
-<ul class="">
-<li><code><a title="game.Game.cheat" href="#game.Game.cheat">cheat</a></code></li>
-<li><code><a title="game.Game.hold" href="#game.Game.hold">hold</a></code></li>
-<li><code><a title="game.Game.roll" href="#game.Game.roll">roll</a></code></li>
-<li><code><a title="game.Game.total" href="#game.Game.total">total</a></code></li>
-<li><code><a title="game.Game.turn" href="#game.Game.turn">turn</a></code></li>
+<h4><code><a title="shell1.Shell1" href="#shell1.Shell1">Shell1</a></code></h4>
+<ul class="two-column">
+<li><code><a title="shell1.Shell1.do_cheat" href="#shell1.Shell1.do_cheat">do_cheat</a></code></li>
+<li><code><a title="shell1.Shell1.do_difficulty" href="#shell1.Shell1.do_difficulty">do_difficulty</a></code></li>
+<li><code><a title="shell1.Shell1.do_exit" href="#shell1.Shell1.do_exit">do_exit</a></code></li>
+<li><code><a title="shell1.Shell1.do_hold" href="#shell1.Shell1.do_hold">do_hold</a></code></li>
+<li><code><a title="shell1.Shell1.do_roll" href="#shell1.Shell1.do_roll">do_roll</a></code></li>
+<li><code><a title="shell1.Shell1.postloop" href="#shell1.Shell1.postloop">postloop</a></code></li>
 </ul>
 </li>
 </ul>
