@@ -62,7 +62,7 @@ clean-all: clean clean-doc
 #
 pylint:
 	@$(call MESSAGE,$@)
-	-cd game && $(PYTHON) -m pylint *.py
+	-cd pig && $(PYTHON) -m pylint *.py
 
 flake8:
 	@$(call MESSAGE,$@)
@@ -76,7 +76,7 @@ lint: flake8 pylint
 #
 black:
 	@$(call MESSAGE,$@)
-	 $(PYTHON) -m black game/
+	 $(PYTHON) -m black pig/
 
 codestyle: black
 
@@ -88,7 +88,7 @@ unittest:
 # @$(call MESSAGE,$@)
 #  $(PYTHON) -m unittest discover
 	@$(call MESSAGE,$@)
-	$(PYTHON) -m unittest discover -s game -p 'test*.py'
+	$(PYTHON) -m unittest discover -s pig -p 'test*.py'
 
 coverage:
 # @$(call MESSAGE,$@)
@@ -96,7 +96,7 @@ coverage:
 # coverage html
 # coverage report -m
 	@$(call MESSAGE,$@)
-	coverage run -m unittest discover -s game -p 'test*.py'
+	coverage run -m unittest discover -s pig -p 'test*.py'
 	coverage html
 	coverage report
 
@@ -110,17 +110,17 @@ test: lint coverage
 pydoc:
 	@$(call MESSAGE,$@)
 	install -d doc/pydoc
-	$(PYTHON) -m pydoc -w game/*.py
+	$(PYTHON) -m pydoc -w pig/*.py
 	mv *.html doc/pydoc
 
 pdoc:
 	@$(call MESSAGE,$@)
-	pdoc --force --html --output-dir doc/pdoc game/*.py
+	pdoc --force --html --output-dir doc/pdoc pig/*.py
 
 pyreverse:
 	@$(call MESSAGE,$@)
 	install -d doc/pyreverse
-	pyreverse game/*.py
+	pyreverse pig/*.py
 	dot -Tpng classes.dot -o doc/pyreverse/classes.png
 	dot -Tpng packages.dot -o doc/pyreverse/packages.png
 	rm -f classes.dot packages.dot
@@ -134,23 +134,23 @@ doc: pdoc pyreverse #pydoc sphinx
 #
 radon-cc:
 	@$(call MESSAGE,$@)
-	radon cc --show-complexity --average game
+	radon cc --show-complexity --average pig
 
 radon-mi:
 	@$(call MESSAGE,$@)
-	radon mi --show game
+	radon mi --show pig
 
 radon-raw:
 	@$(call MESSAGE,$@)
-	radon raw game
+	radon raw pig
 
 radon-hal:
 	@$(call MESSAGE,$@)
-	radon hal game
+	radon hal pig
 
 cohesion:
 	@$(call MESSAGE,$@)
-	cohesion --directory game
+	cohesion --directory pig
 
 metrics: radon-cc radon-mi radon-raw radon-hal cohesion
 
@@ -161,4 +161,4 @@ metrics: radon-cc radon-mi radon-raw radon-hal cohesion
 #
 bandit:
 	@$(call MESSAGE,$@)
-	bandit --recursive game
+	bandit --recursive pig
