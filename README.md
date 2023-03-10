@@ -3,7 +3,63 @@ Pig dice game project
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-Info about the development of Pig dice game. A game were you play against a computer player. First player to reach 100 point are the winner. If you hit 1 your score of the turn is set to zero and the turn ends.
+Info about the development of Pig dice game.
+
+### Rules of the game
+
+A game were you play against a computer player. First player to reach 100 point are the winner. If you hit 1 your score of the turn is set to zero and the turn ends. If you want to save your turn score to a total - enter "hold" in the terminal.
+
+### Main menu commands
+
+You play the game from the GitBash terminal using commands. https://gitforwindows.org/
+
+In the main menu you use the following commands.
+
+```
+# Start the gameplay
+start
+
+# Read the game rules
+rules
+
+# Look at the high score list
+high_score
+
+# Empty the high score list
+clear_high_score
+
+# Exit the program
+exit
+
+```
+
+### In game commands
+
+When you start the game you get another set of commands.
+
+```
+# Roll the dice
+roll
+
+# Save your turn score to a total
+hold
+
+# Get six points to your turn score
+cheat
+
+# Set personality of cpu to coward
+difficulty coward
+
+# Set personality of cpu to moderate
+difficulty moderate
+
+# Set personality of cpu to bold
+difficulty bold
+
+# Exit the gameplay
+exit
+
+```
 
 [[_TOC_]]
 
@@ -13,7 +69,6 @@ Instructions
 --------------------------
 
 Important things about the project
-
 
 
 ### Check version of Python
@@ -79,9 +134,12 @@ Read more on [Python PIP](https://pypi.org/project/pip/).
 ### Run the code
 
 To run the program write the following. It is important to Use the GitBash terminal.
-If the game cant find the modules do the following.
 
 ```
+# Execute the main program
+python pig/main.py
+
+If the game cant find the modules do the following.
 
 # Go to the root of the project
 # In gitbash write like this:
@@ -89,8 +147,6 @@ export PYTHONPATH=.
 
  then run the program again
 
-# Execute the main program
-python pig/main.py
 ```
 
 All code is stored in the directory `pig/`.
@@ -170,6 +226,18 @@ make clean
 make clean-all
 ```
 
+### Generate UML and documentation
+
+You can automaticly generate UML diagrams and documentation from the code.
+
+```
+# Generate diagrams with pyreverse
+make pyreverse
+
+# Generate documentation
+make pdoc
+
+```
 
 
 Optional targets
