@@ -15,7 +15,7 @@ class TestGameplay(unittest.TestCase):
         self.human_player = Player(name)
         self.computer_player = Player("cpu")
         self.game = Game()
-        self.current_player = self.human_player
+        self.current_player = self.computer_player
         self.gameplay = Gameplay(self.current_player)
 
     def test_init_object(self):

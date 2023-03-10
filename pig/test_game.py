@@ -23,7 +23,7 @@ class TestGame(unittest.TestCase):
 
     def test_turn(self):
         """Test turn."""
-        self.player.roll_score = self.dice.get_dice_min
+        self.player.roll_score = self.dice.get_dice_min()
         self.player.turn_score = self.dice.get_dice_max()
         self.game.turn(self.player)
         self.assertEqual(self.player.turn_score, 0)
