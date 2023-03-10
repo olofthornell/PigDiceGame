@@ -1,6 +1,6 @@
 """Unit testing gameplay."""
 import unittest
-from dice import Dice
+from my_dice import Dice
 from player import Player
 from game import Game
 

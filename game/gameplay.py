@@ -1,8 +1,8 @@
 """Gameplay mechanics for Pig game."""
 
-from game import Game
-from player import Player
 from intelligence import Intelligence
+from player import Player
+from game import Game
 
 
 class Gameplay:
