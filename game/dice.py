@@ -7,16 +7,16 @@ class Dice:
 
     def __init__(self):
         """Init the object."""
-        self._dice_min = 1
-        self._dice_max = 6
+        self.dice_min = 1
+        self.dice_max = 6
 
-    def dice_min(self):
+    def get_dice_min(self):
         """Min value of the dice."""
-        return self._dice_min
+        return self.dice_min
 
-    def dice_max(self):
+    def get_dice_max(self):
         """Min value of the dice."""
-        return self._dice_max
+        return self.dice_max
 
     def roll(self):
         """Get a value of the dice between 1 and 6."""

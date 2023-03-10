@@ -43,4 +43,4 @@ class Game:
 
     def cheat(self, player):
         """Get max value on a roll with the dice."""
-        player.set_roll_score(self.dice1.dice_max())
+        player.set_roll_score(self.dice1.get_dice_max())

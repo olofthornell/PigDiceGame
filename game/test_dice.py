@@ -1,7 +1,7 @@
 """Unit testing dice."""
 
 import unittest
-from my_dice import Dice
+from dice import Dice
 
 
 class TestDice(unittest.TestCase):
@@ -23,16 +23,16 @@ class TestDice(unittest.TestCase):
         self.assertGreaterEqual(resault, 1)
         self.assertLessEqual(resault, 6)
 
-    def test_dice_min(self):
+    def test_get_dice_min(self):
         """Test."""
-        exp = self.dice._dice_min
-        res = self.dice.dice_min()
+        exp = self.dice.dice_min
+        res = self.dice.get_dice_min()
         self.assertEqual(exp, res)
 
-    def test_dice_max(self):
+    def test_get_dice_max(self):
         """Test dice max."""
-        exp = self.dice._dice_max
-        res = self.dice.dice_max()
+        exp = self.dice.dice_max
+        res = self.dice.get_dice_max()
         self.assertEqual(exp, res)
 
 
