@@ -6,18 +6,18 @@ class Intelligence:
 
     def __init__(self):
         """Init the object."""
-        self._coward = 4
-        self._moderate = 15
-        self._bold = 25
+        self.coward = 4
+        self.moderate = 15
+        self.bold = 25
 
-    def coward(self):
+    def get_coward(self):
         """Set cpu player to a coward."""
-        return self._coward
+        return self.coward
 
-    def moderate(self):
+    def get_moderate(self):
         """Set cpu player to moderate."""
-        return self._moderate
+        return self.moderate
 
-    def bold(self):
+    def get_bold(self):
         """Set cpu player to bold."""
-        return self._bold
+        return self.bold

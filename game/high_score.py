@@ -26,6 +26,7 @@ class High_score():
 
     def get_high_score(self):
         """Print the high_score list."""
+        print()
         print(f"{'Name':<20}", end="")
         print(f"{'Wins':<20}", end="")
         print(f"{'Games played':<20}")
@@ -33,6 +34,7 @@ class High_score():
             print(f"{name:<20}", end="")
             print(f"{self.high_score_dict[name][1]:<20}", end="")
             print(self.high_score_dict[name][0])
+        print()
 
     def save_current(self, player):
         """Save the current player to the high_score dictionary."""

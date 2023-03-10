@@ -1,5 +1,6 @@
 """Gameplay mechanics for Pig game."""
 
+import time
 from intelligence import Intelligence
 from player import Player
 from game import Game
@@ -11,10 +12,10 @@ class Gameplay:
     def __init__(self, player):
         """Init game and player objects."""
         self.intell = Intelligence()
-        self._difficulty = self.intell.moderate()
+        self.difficulty = self.intell.get_moderate()
         self.human_player = player
         self.computer_player = Player("cPIGu")
-        self._current_player = self.human_player
+        self.current_player = self.human_player
         self.game1 = Game()
         self.win_point = 100
         self.print_menu()
@@ -41,70 +42,72 @@ class Gameplay:
         print("-" * 79)
         print(f"{'exit':20}| Return to main menu")
         print("-" * 79)
-        print(f"First player is {self._current_player.get_name()}!")
-        print("-" * 79)
+        print()
+        print(f"First player is {self.current_player.get_name()}!")
         print()
 
-    def difficulty(self, arg):
+    def set_difficulty(self, arg):
         """Choose personality on opponent cPIGu."""
         if arg == "coward":
             print("cPIGu personality set to 'coward'")
-            self._difficulty = self.intell.coward()
+            self.difficulty = self.intell.get_coward()
         if arg == "moderate":
             print("cPIGu personality set to 'moderate'")
-            self._difficulty = self.intell.moderate()
+            self.difficulty = self.intell.get_moderate()
         if arg == "bold":
             print("cPIGu personality set to 'bold'")
-            self._difficulty = self.intell.bold()
+            self.difficulty = self.intell.get_bold()
 
-    def current_player(self):
+    def get_current_player(self):
         """Return the current player."""
-        return self._current_player
+        return self.current_player
 
     def switch_player(self):
         """Switch between human player and cpu player."""
-        if self._current_player == self.human_player:
-            self._current_player = self.computer_player
+        if self.current_player == self.human_player:
+            self.current_player = self.computer_player
             print()
             print("-" * 79)
-            print(f"Next player is {self._current_player.get_name()}!")
-            print(f"You're total is {self._current_player.get_total_score()}")
+            print(f"Next player is {self.current_player.get_name()}!")
+            print(f"You're total is {self.current_player.get_total_score()}")
             print("-" * 79)
             print()
             self.cpigu_roll()
         else:
-            self._current_player = self.human_player
+            self.current_player = self.human_player
             print()
             print("-" * 79)
-            print(f"Next player is {self._current_player.get_name()}!")
-            print(f"You're total is {self._current_player.get_total_score()}")
+            print(f"Next player is {self.current_player.get_name()}!")
+            print(f"You're total is {self.current_player.get_total_score()}")
             print("-" * 79)
             print()
 
     def cpigu_roll(self):
         """Cpu player roll the dice."""
-        self.game1.roll(self._current_player)
+        self.game1.roll(self.current_player)
         self.turn()
         while self.computer_player.get_roll_score() != 1\
                 and self.computer_player.get_turn_score()\
-                < self._difficulty:
-            self.game1.roll(self._current_player)
+                < self.difficulty:
+            self.medium_pause()
+            self.game1.roll(self.current_player)
             self.turn()
-        if self._current_player == self.computer_player:
-            self.game1.hold(self._current_player)
+        if self.current_player == self.computer_player:
+            self.game1.hold(self.current_player)
             self.switch_player()
 
     def cheat(self):
         """Roll the dice and get max value of the dice."""
         print(f"{self.current_player().get_name()}")
-        self.game1.cheat(self._current_player)
+        self.game1.cheat(self.current_player)
         self.turn()
 
     def roll(self):
         """Roll the dice."""
+        self.short_pause()
         print()
-        print(f"{self.current_player().get_name()}")
-        self.game1.roll(self._current_player)
+        print(f"{self.current_player.get_name()}")
+        self.game1.roll(self.current_player)
         self.turn()
 
     def turn(self):
@@ -113,35 +116,49 @@ class Gameplay:
         If dice score is 1, player is switched and score turn 0.
         If score i 100 game ends.
         """
-        self.game1.turn(self._current_player)
-        roll = self._current_player.get_roll_score()
-        turn = self._current_player.get_turn_score()
-        total = self._current_player.get_total_score()
+        self.game1.turn(self.current_player)
+        roll = self.current_player.get_roll_score()
+        turn = self.current_player.get_turn_score()
+        total = self.current_player.get_total_score()
         print(f"You rolled a {roll}")
         print(f"Turn score: {turn}")
         print(f"Total score: {total + turn}")
         print()
-        if self._current_player.get_roll_score() == 1:
+        if self.current_player.get_roll_score() == 1:
             print(f"Oh no! You rolled a {roll}")
+            self.long_pause()
             self.switch_player()
         if total + turn >= self.win_point:
-            self.game1.total(self._current_player)
-            print(f"{self._current_player.get_name()} is the winner!!!")
+            self.game1.total(self.current_player)
+            print(f"{self.current_player.get_name()} is the winner!!!")
             print()
             print("Enter 'exit' to return to main menu")
             print("Enter 'roll' to start a new game")
             print("Enter 'help' for a list of commands")
             print()
-            self._current_player.add_win()
+            self.current_player.add_win()
             self.human_player.add_games_played()
             self.computer_player.set_roll_score(1)
             self.computer_player.set_turn_score(0)
             self.computer_player.set_total_score(0)
             self.human_player.set_turn_score(0)
             self.human_player.set_total_score(0)
-            self._current_player = self.human_player
+            self.current_player = self.human_player
+
+    def short_pause(self):
+        """Pause the game short time."""
+        time.sleep(0.4)
+
+    def medium_pause(self):
+        """Pause the game medium time."""
+        time.sleep(1)
+
+    def long_pause(self):
+        """Pause the game long time."""
+        time.sleep(2)
 
     def hold(self):
         """End turn and collect points."""
-        self.game1.hold(self._current_player)
+        self.medium_pause()
+        self.game1.hold(self.current_player)
         self.switch_player()

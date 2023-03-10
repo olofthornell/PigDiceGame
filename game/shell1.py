@@ -14,7 +14,7 @@ class Shell1(cmd.Cmd):
 
     def do_difficulty(self, arg):
         """Choose personality on opponent cPIGu."""
-        self.gameplay.difficulty(arg)
+        self.gameplay.set_difficulty(arg)
 
     def do_cheat(self, _):
         """Roll the dice and get a six."""

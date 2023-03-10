@@ -1,5 +1,6 @@
 """Cmdloop that creates a outer shell and workes as a main menu."""
 
+import time
 import cmd
 import shell1
 from high_score import High_score
@@ -39,6 +40,7 @@ class Shell2(cmd.Cmd):
         print()
         print()
         print(f"Welcome {self._player_name}! Let's pass some pigs")
+        time.sleep(2)
         print()
         print("Commands:")
         print("-" * 79)
