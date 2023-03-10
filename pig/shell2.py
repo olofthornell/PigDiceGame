@@ -3,8 +3,8 @@
 import time
 import cmd
 from pig.shell1 import Shell1
-from high_score import HighScore
-from player import Player
+from pig.high_score import HighScore
+from pig.player import Player
 
 
 class Shell2(cmd.Cmd):
